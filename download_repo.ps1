@@ -22,7 +22,8 @@ param(
    [Parameter(Mandatory=$False)] 
    [string] $destination = "c:\temp" 
 ) 
-	
+$baseName = (Get-Item $PSCommandPath).BaseName # get name of script being executed
+$baseName
 $repoName
 $user
 $branch
