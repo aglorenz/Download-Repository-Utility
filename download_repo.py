@@ -1,40 +1,57 @@
 # -*- coding: iso-8859-1 -*-
 import subprocess, sys, os
 from pathlib import Path
+import tkinter as tk
+import configparser
 
-##p = subprocess.Popen(["powershell.exe", 
-##              "C:\\Users\\Andy\\Documents\\_Student Repos\\download1.ps1"], 
-##              stdout=sys.stdout)
-##p.communicate()
+# Import our other modules
+import download_repo_gui
+import download_repo_func
+import config # This module allows us to create "global" values for access in other modules in this app
 
-##p = subprocess.Popen(["powershell.exe", 
-##              "C:\\Users\\Andy\\Documents\\_Student Repos\\download1.ps1"], 
-##              stdout=subprocess.PIPE)
-##p_out, p_err = p.communicate()
-
-def run(cmd):
-
-    completed = subprocess.run(["powershell.exe", "-ExecutionPolicy", "RemoteSigned", "-Command", cmd], capture_output=True)
-    return completed
-
-def print_file(file_path):
-    f = open(file_path, 'r')
-    print(f.read())
-
-
-if __name__ == '__main__':
-    full_script_name = os.path.basename(__file__)  # like "download_repo.py"
-    base_name = Path(full_script_name).stem # basename with no stem. like "download_repo"
-    repo_name = 'JavaScript-Projects'
-    user_name = 'jefflicano82'
+# Frame is the Tkinter frame class that our own class will inherit from
+class ParentWindow(tk.Frame):
     
-    ps_command = f"./{base_name}.ps1 -repoName {repo_name} -user {user_name} | Out-File -Encoding ASCII {base_name}.log"
-    result = run(ps_command)
-    if result.returncode != 0:
-        print(f"An error occured: {result.stderr}")
-    else:
-        print("Download executed successfully!")
-        print_file(f"{base_name}.log")
+    def __init__(self, master, *args, **kwargs):
+        
+        tk.Frame.__init__(self, master, *args, **kwargs)
+
+        # define our master frame configuration
+        self.master = master
+
+        # This CenterWindow method will center our app on the user's screen
+        download_repo_func.center_window(self,760,170) # initial width and height
+        
+        self.master.title('Download GitHub Repo')
+        self.master.config(bg="#C0C0C0")
+
+        ##self.master.columnconfigure(0,weight=1) # if I uncomment this, then column 0 stretches with the size of the frame.
+        self.master.columnconfigure(1,weight=2)
+
+        # load in the GUI widgets from a separate module
+        # keeping code compartmentalized and clutter free
+        download_repo_gui.load_gui(self, config.base_name)
+
+        # read the .ini file and display the saved destination folder in GUI
+        ini_config = configparser.ConfigParser()
+        # get the name of the .ini file from base_name in our config module
+        ini_file = config.base_name + '.ini'
+        ini_config.read(ini_file)
+        #print(ini_config.sections())
+        dest_folder = ini_config['zipfile.dest']['destination']
+        
+        self.txt_dest.insert(0,dest_folder)
+
+
+if __name__ == "__main__":
+    # set base_name in the config module so it can be accessed by other modules like a global var
+    full_script_name = os.path.basename(__file__)  # like "download_repo.py"
+    config.base_name = Path(full_script_name).stem # basename with no stem. like "download_repo"
+
+    root = tk.Tk() # root = main window of the application
+    App = ParentWindow(root)
+    root.mainloop()
+
 
     
 
