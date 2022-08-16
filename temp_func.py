@@ -13,15 +13,10 @@ def center_window(self, w, h):
     self.master.geometry('{}x{}+{}+{}'.format(w, h, x, y))
 
 def callback(sv):
-    print(sv.get())
-    sv.delete(0,'end')
-    sv.insert(0,"aaaaaaaa sldfj sldfj sdlfj sldfkj ")
-##    sv.set("aaaaaaaa sldfj sldfj sdlfj sldfkj ")
+    repo = sv.get()
+    print(repo)
+    sv.xview(0) # left justify the text to view the first character in window.
+
     print(type(sv))
-#    sv.xview_moveto(0)
-##    sv.xview_moveto(.1)
-    return True
-##
-##def left_justify(my_text):
-##    my_text.xview_moveto(0)
-##    return True
+    return True # must return True to keep this function turned On
+
