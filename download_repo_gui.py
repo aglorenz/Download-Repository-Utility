@@ -25,11 +25,6 @@ from idlelib.tooltip import Hovertip # Tooltips!
 # Import our other modules
 import download_repo_func
 
-
-def left_justify(my_text):
-    my_text.xview_moveto(0)
-    return True
-
 def load_gui(self, base_name):
     ''' Define the tkinter widgets and their initial
         configuration and place them using the grid geometry.
@@ -38,6 +33,9 @@ def load_gui(self, base_name):
     ----------
     self : Frame
         The tkinter Frame in which this function will place widgets
+    base_name : string
+        The base_name of the main python file without extention ex: "download_repo"
+        Retrieved after initialization from config.py module
 
     Returns
     -------
@@ -54,8 +52,8 @@ def load_gui(self, base_name):
     self.sv = tk.StringVar()
 
     # Entry boxes
-#    self.txt_source = tk.Entry(self.master, textvariable=sv, font="Verdana 12")#, validate='focusout', validatecommand=(left_justify(sv)))
-    self.txt_source = tk.Entry(self.master, font="Verdana 12")
+    self.txt_source = tk.Entry(self.master, font="Verdana 12", validate="focusout",
+                               validatecommand=lambda:download_repo_func.left_justify(self.txt_source)) # left justify
     txt_source_tip = Hovertip(self.txt_source,'Enter repository link provided by student',
                            hover_delay=500) # Tooltip
     self.txt_source.grid(row=1,column=1,rowspan=1,padx=(20,20),pady=(0,0),ipady=1,sticky='nswe')

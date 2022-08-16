@@ -20,7 +20,7 @@ Functions:
 
 
 import subprocess, sys, os
-import configparser # to write a .ini file
+import configparser # to write a .ini file for the app
 from pathlib import Path
 
 import tkinter as tk
@@ -88,6 +88,10 @@ def run(cmd):
     completed = subprocess.run(["powershell.exe", "-ExecutionPolicy", "RemoteSigned", "-Command", cmd], capture_output=True)
     return completed
 
+def left_justify(entry_box):
+    entry_box.xview(0)  # left justify contents to ensure view of first character
+    return True         # must return true to keep the callback turned on
+
 def print_file(file_path):
     f = open(file_path, 'r')
     print(f.read())
@@ -109,12 +113,16 @@ def download(remote_url, unzip_dest):
     
     #repo_name = os.path.splitext(remote_url)[0]  # 'MyRepo'
     print(f"Username {user_name}, RepoName {repo_name}")
-##    repo_name = 'JavaScript-Projects'
-##    user_name = 'jefflicano82'
-##    
-##    ps_command = (f"./{base_name}.ps1 -repoName {repo_name} -user {user_name} -destination {unzip_dest}"
-##                  f" | Out-File -Encoding ASCII {base_name}.log")
+    
+    # Note: using "-Encoding ASCII" because Powershell 5.1 doesn't support
+    # UTF-8 (without BOM) so the beginning of the output looks funky
+    # However, using ASCII eliminates any special characters like ñ and results in
+    # a ? instead.  Small risk considering what we are using this for.
+    # Could possible start using Powershell Core, which allows UTF-8 (no BOM)
+    # but testing will need to be done.
+    # https://4sysops.com/wiki/differences-between-powershell-versions/
     ps_command = (f"./{base_name}.ps1 -repoName {repo_name} -user {user_name}"
+                  f" -destination '{unzip_dest}'"
                   f" | Out-File -Encoding ASCII {base_name}.log")
     print(ps_command)
     result = run(ps_command)
