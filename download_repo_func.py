@@ -92,11 +92,15 @@ def left_justify(entry_box):
     entry_box.xview(0)  # left justify contents to ensure view of first character
     return True         # must return true to keep the callback turned on
 
+def clr_branch(entry_box):
+    entry_box.delete(0,'end')
+    entry_box.config(state="disabled")
+
 def print_file(file_path):
     f = open(file_path, 'r')
     print(f.read())
 
-def download(remote_url, unzip_dest):
+def download(remote_url, unzip_dest, btn_branch, alt_branch):
     # save the dest folder path to an .ini file
     ini_config = configparser.ConfigParser()
     ini_config['zipfile.dest'] = {}
@@ -110,9 +114,13 @@ def download(remote_url, unzip_dest):
     parsed_url = remote_url.split("/")
     user_name = parsed_url[3] # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
     repo_name = parsed_url[4]
+    if (btn_branch == "other"):
+        branch = alt_branch
+    else:
+        branch = btn_branch
     
     #repo_name = os.path.splitext(remote_url)[0]  # 'MyRepo'
-    print(f"Username {user_name}, RepoName {repo_name}")
+    print(f"Username={user_name}, RepoName={repo_name}, Branch={branch}")
     
     # Note: using "-Encoding ASCII" because Powershell 5.1 doesn't support
     # UTF-8 (without BOM) so the beginning of the output looks funky
@@ -122,7 +130,7 @@ def download(remote_url, unzip_dest):
     # but testing will need to be done.
     # https://4sysops.com/wiki/differences-between-powershell-versions/
     ps_command = (f"./{base_name}.ps1 -repoName {repo_name} -user {user_name}"
-                  f" -destination '{unzip_dest}'"
+                  f" -branch '{branch}' -destination '{unzip_dest}'"
                   f" | Out-File -Encoding ASCII {base_name}.log")
     print(ps_command)
     result = run(ps_command)

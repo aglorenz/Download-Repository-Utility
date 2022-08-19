@@ -5,8 +5,8 @@ import tkinter as tk
 import configparser
 
 # Import our other modules
-import download_repo_gui
-import download_repo_func
+import download_repo_gui as dr_gui
+import download_repo_func as dr_func
 import config # This module allows us to create "global" values for access in other modules in this app
 
 # Frame is the Tkinter frame class that our own class will inherit from
@@ -20,7 +20,7 @@ class ParentWindow(tk.Frame):
         self.master = master
 
         # This CenterWindow method will center our app on the user's screen
-        download_repo_func.center_window(self,760,170) # initial width and height
+        dr_func.center_window(self,760,210) # initial width and height
         
         self.master.title('Download GitHub Repo')
         self.master.config(bg="#C0C0C0")
@@ -30,7 +30,7 @@ class ParentWindow(tk.Frame):
 
         # load in the GUI widgets from a separate module
         # keeping code compartmentalized and clutter free
-        download_repo_gui.load_gui(self, config.base_name)
+        dr_gui.load_gui(self, config.base_name)
 
         # read the .ini file and display the saved destination folder in GUI
         ini_config = configparser.ConfigParser()
