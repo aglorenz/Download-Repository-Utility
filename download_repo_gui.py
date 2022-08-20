@@ -47,16 +47,24 @@ def load_gui(self, base_name):
     # Labels
 
         # Repo Source
-    self.lbl_repo_src = tk.Label(self.master,height=1,bg="#C0C0C0",font=("Verdana", 12),
+    self.lbl_app = tk.Label(self.master,height=1,bg="#C0C0C0",font=("Verdana Bold", 18),
+                                 text='Download Repository Utility')
+    self.lbl_app.grid(row=0,column=1,padx=(20,0),pady=(10,4),sticky='w')
+
+        # Repo URL
+    self.lbl_repo_src = tk.Label(self.master,height=1,bg="#C0C0C0",font=("Verdana Bold", 12),
                                  text='Enter Repo URL:')
-    self.lbl_repo_src.grid(row=0,column=1,padx=(20,0),pady=(20,0),sticky='w')
+    self.lbl_repo_src.grid(row=1,column=0,padx=(20,0), pady=(0,5), sticky='w')
 
-        # Choose Repo Branch
-    self.lbl_branch = tk.Label(self.master, height=1, bg="#C0C0C0", font=("Verdana", 12),
-                                 text='Select Branch:')
-    self.lbl_branch.grid(row=2, column=0, padx=(20,0), pady=(0), sticky='w')
+        # Select Repo Branch
+    self.lbl_branch = tk.Label(self.master, height=1, bg="#C0C0C0", font=("Verdana Bold", 12),
+                                 text='Repo Branch:')
+    self.lbl_branch.grid(row=2, column=0, padx=(20,0), sticky='sw')
 
-    #self.sv = tk.StringVar()
+        # Execution Output
+    self.lbl_output = tk.Label(self.master, height=1, bg="#C0C0C0", font=("Verdana Bold", 12),
+                                 text='Program Output:')
+    self.lbl_output.grid(row=4, column=0, padx=(20,0), pady=(20,0), sticky='w')
 
     ######################
     # Radio Button Frame #
@@ -108,42 +116,47 @@ def load_gui(self, base_name):
     self.txt_repo = tk.Entry(self.master, font="Verdana 12", validate="focusout",
                              validatecommand=lambda:
                              dr_func.left_justify(self.txt_repo)) # left justify
-    txt_repo_tip = Hovertip(self.txt_repo,'Enter repository link',
+    txt_repo_tip = Hovertip(self.txt_repo,'Paste repository link, then press Enter',
                            hover_delay=500) # Tooltip
     self.txt_repo.grid(row=1, column=1, rowspan=1, padx=(20,20), pady=(0,10), ipady=1, sticky='nswe')
+        # download when enter key is pressed while in Entry widget
     self.txt_repo.bind('<Return>', lambda event: eval(self.download))
 
         # Destination Path
     self.txt_dest = tk.Entry(self.master, font="Verdana 12")
-    self.txt_dest.grid(row=3, column=1, rowspan=1, padx=(20,20), pady=(10,0), sticky='nswe')
+    self.txt_dest.grid(row=3, column=1, padx=(20,20), pady=(10,0), sticky='nswe')
 
     # Buttons
 
         # Browse Destination Button
-    self.btn_brws_dest = tk.Button(self.master, width=12, height=1, text='Browse Dest...',
+    self.btn_brws_dest = tk.Button(self.master, height=1, text='Browse Dest...', font=("Verdana", 12),
                                    command=lambda: dr_func.get_folder(self.txt_dest))
     btn_dest_tip = Hovertip(self.btn_brws_dest, 'Click to select Destination folder\n'
                             'Default is "C:\\temp"', hover_delay=500) # Tooltip
     self.btn_brws_dest.grid(row=3, column=0, padx=(24,0), pady=(10,0), sticky='we')
 
         # Download Repo Button
-    self.btn_dwnld = tk.Button(self.master, width=12, height=2, text='Download Repo',
-                               command=lambda: eval(self.download))
-##                                                                self.rb_var.get(), self.txt_branch.get()))
+    self.btn_dwnld = tk.Button(self.master, height=2, text='Download Repo', font=("Verdana", 12),
+                               command=lambda: eval(self.download)) # download when button clicked
     btn_dwnld_tip = Hovertip(self.btn_dwnld,'Click to download and unzip\n'
                              'repo into desination folder.', hover_delay=500) # Tooltip
-    self.btn_dwnld.grid(row=4,column=0, padx=(24,0), pady=(12,0), sticky='we')
+    self.btn_dwnld.grid(row=6, column=0, padx=(22,0), pady=(12,20), sticky='we')
     
         # Close application Button
-    self.btn_close = tk.Button(self.master, width=12, height=2, text='Close Program',
+    self.btn_close = tk.Button(self.master, width=12, height=2, text='Close', font=("Verdana", 12),
                                command=self.master.destroy)
-    self.btn_close.grid(row=4,column=1, padx=(0,19), pady=(12,0), sticky='e')
+    self.btn_close.grid(row=6, column=1, padx=(0,19), pady=(12,20), sticky='e')
 
     # set the Tab order so that download button immediately follows repository URL
     new_order = (self.txt_repo, self.btn_dwnld)
     for widget in new_order:
         widget.lift()
 
+    # Text box
+
+        # For capturing informational and error messages
+    self.txt_out = tk.Text(self.master, font="Verdana 12", state="disabled", height=5)
+    self.txt_out.grid(row=5, column=0, columnspan=2, padx=(22,20), pady=(0,0), sticky='nswe')
 
 if __name__ == "__main__":
     pass

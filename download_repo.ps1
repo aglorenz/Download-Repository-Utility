@@ -35,7 +35,7 @@ $destination
 # $destination = 'C:\Users\Andy\Documents\_Student Repos'
 
 # Force to create a zip file 
-$zipFile = "$destination\$user-$repoName.zip" # prepend user name to differentiate other student's repos
+$zipFile = "$destination/$user-$repoName.zip" # prepend user name to differentiate other student's repos
 $zipFile
 
 #New-Item $zipFile -ItemType File -Force  # | Out-Null # supress output with Out-Null
