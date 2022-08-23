@@ -20,10 +20,9 @@ class ParentWindow(tk.Frame):
         self.master = master
 
         # This CenterWindow method will center our app on the user's screen
-        dr_func.center_window(self,760,360) # initial width and height
+        dr_func.center_window(self,760,400) # initial width and height
         
-        self.master.title('Download GitHub Repo')
-        self.master.config(bg="#C0C0C0")
+        self.master.title('Download GitHub Repo')        
 
         ##self.master.columnconfigure(0,weight=1) # if I uncomment this, then column 0 stretches with the size of the frame.
         self.master.columnconfigure(1,weight=1)
@@ -41,7 +40,7 @@ class ParentWindow(tk.Frame):
         #print(ini_config.sections())
         dest_folder = ini_config['zipfile.dest']['destination']
         
-        self.txt_dest.insert(0,dest_folder)
+        self.entry_dest.insert(0,dest_folder)
 
 
 if __name__ == "__main__":

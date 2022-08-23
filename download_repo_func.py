@@ -100,7 +100,7 @@ def print_file(file_path):
     f = open(file_path, 'r')
     print(f.read())
 
-def download(remote_url, unzip_dest, btn_branch, alt_branch):
+def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     # save the dest folder path to an .ini file
     ini_config = configparser.ConfigParser()
     ini_config['zipfile.dest'] = {}
@@ -110,7 +110,9 @@ def download(remote_url, unzip_dest, btn_branch, alt_branch):
 
     base_name = config.base_name # get base name from our config module
     print(f"base_name = {base_name}")
+
     #remote_url = "https://github.com/Alisak1/JavaScript-Projects/blob/main/Basic%20JavaScript%20Projects/Movie%20Website/bootstrap4_project/academy_cinemas.html"
+    remote_url = entry_repo.get()
     parsed_url = remote_url.split("/")
     user_name = parsed_url[3] # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
     repo_name = parsed_url[4]
@@ -119,11 +121,22 @@ def download(remote_url, unzip_dest, btn_branch, alt_branch):
     else:
         branch = btn_branch
     
-    #repo_name = os.path.splitext(remote_url)[0]  # 'MyRepo'
+    # test write URL to text widget
+    text_out.config(state='normal')
+    text_out.delete(1.0,'end')
+    text_out.insert('end', remote_url + '\n')
+    text_out.insert('end','Hi Andy'+'\n')
+    text_out.insert('end','Hi Andy')
+    text_out.config(state='disabled')
+    print(f"remote url = {remote_url}")
+
+    # clear the repo entry field for next use
+    entry_repo.delete(0,'end')
+
     print(f"Username={user_name}, RepoName={repo_name}, Branch={branch}")
     
     # Note: using "-Encoding ASCII" because Powershell 5.1 doesn't support
-    # UTF-8 (without BOM) so the beginning of the output looks funky
+    # UTF-8 (without BOM) When usig UTF-8, the beginning of the output looks funky
     # However, using ASCII eliminates any special characters like ñ and results in
     # a ? instead.  Small risk considering what we are using this for.
     # Could possible start using Powershell Core, which allows UTF-8 (no BOM)
