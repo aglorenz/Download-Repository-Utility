@@ -42,21 +42,34 @@ $zipFile
 
 # this is the same way as when you click on the green download button
 $repositoryZipUrl = "https://github.com/$user/$repoName/archive/$branch.zip"
+$repositoryZipUrl
+
 #$repositoryZipUrl = "https://github.com/sandroasp/Microsoft-Integration-and-Azure-Stencils-Pack-for-Visio/archive/master.zip"
 
 # using the API instead
 #$repositoryZipUrl = "https://api.github.com/repos/$user/$repoName/zipball/$branch"  
 
 # download the zip 
-Write-Host 'Starting downloading the GitHub Repository'
-Invoke-RestMethod -Uri $repositoryZipUrl -OutFile $zipFile
-Write-Host 'Download finished'
+echo 'Starting downloading the GitHub Repository'
+Try {
+	Invoke-RestMethod -Uri $repositoryZipUrl -OutFile $zipFile -ErrorAction stop
+    
+}
+Catch [System.Net.WebException]{
+	$Error[0].Exception.GetType().FullName
+	echo 'help me'
+	Write-Host 'help me again'
+	echo $_.Exception.Message
+	echo $_.Exception
+	echo $_
+}
+echo 'Download finished'
 
 #Extract Zip File
-Write-Host 'Starting unziping the GitHub Repository locally'
+echo 'Starting unziping the GitHub Repository locally'
 #Expand-Archive -Path $zipFile -Force -DestinationPath $destination
 Expand-Archive -Path $zipFile -Force 
-Write-Host 'Unzip finished'
+echo 'Unzip finished'
 
 # move zip file to the destination - Expand-Archive has a bug:  when using -DestinationPath, it uses the name of the first folder in
 # the zip file instead of the name of the zip file root.  Example:  if I have username-repo.zip and the first folder in the zip

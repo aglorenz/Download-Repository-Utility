@@ -20,9 +20,9 @@ class ParentWindow(tk.Frame):
         self.master = master
 
         # This CenterWindow method will center our app on the user's screen
-        dr_func.center_window(self,760,400) # initial width and height
+        dr_func.center_window(self,760,458) # initial width and height
         
-        self.master.title('Download GitHub Repo')        
+        self.master.title('Download GitHub Repository')        
 
         ##self.master.columnconfigure(0,weight=1) # if I uncomment this, then column 0 stretches with the size of the frame.
         self.master.columnconfigure(1,weight=1)

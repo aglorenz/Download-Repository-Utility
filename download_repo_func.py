@@ -100,6 +100,26 @@ def print_file(file_path):
     f = open(file_path, 'r')
     print(f.read())
 
+def validate_dest(unzip_dest, text_out):
+    # set to a message for the text output if destination folder is auto-created
+    dest_created = ""
+    if not os.path.exists(unzip_dest):
+        # create default directory if not exists
+        unzip_dest = 'C:/temp'
+        dest_created = " --Default folder"
+        if not os.path.exists(unzip_dest):
+            try:
+                os.makedirs(unzip_dest) # , exist_ok=True)
+                dest_created += " (Auto-created)\n"
+            except OSError as e:
+                text_out.insert('end', f"Fatal: {str(e)}\n", 'err_bold')
+                text_out.insert('end', f"Cannot create folder: '{unzip_dest}'\n", 'err')
+                text_out.config(state='disabled')
+                sys.exit(1)
+    text_out.insert('end',"Destination: ",'bold', f"'{unzip_dest}'",'info_bold',
+                    f"{dest_created}\n")                
+    return unzip_dest
+
 def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     # save the dest folder path to an .ini file
     ini_config = configparser.ConfigParser()
@@ -109,26 +129,51 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
               ini_config.write(configfile)
 
     base_name = config.base_name # get base name from our config module
-    print(f"base_name = {base_name}")
 
-    #remote_url = "https://github.com/Alisak1/JavaScript-Projects/blob/main/Basic%20JavaScript%20Projects/Movie%20Website/bootstrap4_project/academy_cinemas.html"
-    remote_url = entry_repo.get()
-    parsed_url = remote_url.split("/")
-    user_name = parsed_url[3] # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
-    repo_name = parsed_url[4]
+    # prepare the text box for output
+    text_out.config(state='normal')
+    text_out.delete(1.0,'end')
+
+    # parse the repo URL to get user name and repository name
+    
+    try:
+        remote_url = entry_repo.get()
+        parsed_url = remote_url.split("/")
+        # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
+        user_name = parsed_url[3] 
+        repo_name = parsed_url[4]
+
+    except IndexError as e:
+        text_out.insert('end', f"Fatal: {str(e)}\n", 'err_bold')
+        text_out.insert('end', "Missing or bad formatting in Repo URL.\n", 'err')
+        text_out.insert('end',
+                        "Ensure URL contains valid Username and Repository like so:\n", 'err')
+        text_out.insert('end',
+                        "https://github.com/Alisak1/JavaScript-Projects/...", 'err_bold')
+        text_out.config(state='disabled')
+        sys.exit(1)
+##        raise Exception("woops")  # this will end the program when not caught with except
+
+    # Get the branch name            
     if (btn_branch == "other"):
         branch = alt_branch
     else:
         branch = btn_branch
     
-    # test write URL to text widget
-    text_out.config(state='normal')
-    text_out.delete(1.0,'end')
-    text_out.insert('end', remote_url + '\n')
-    text_out.insert('end','Hi Andy'+'\n')
-    text_out.insert('end','Hi Andy')
+    text_out.insert('end', f"{remote_url}\n")
+    text_out.tag_add('info','end')
+    text_out.insert('end',"User: ",'bold', f"'{user_name}'",'info_bold',
+                          " | Repo: ",'bold', f"'{repo_name}'",'info_bold',
+                          " | Branch: ",'bold', f"'{branch}'\n",'info_bold' )
+
+    # Get the destination folder.  Default to C:\temp if empty or path doesn't exist
+    # Create folder if needed.
+    unzip_dest = validate_dest(unzip_dest, text_out)
+
+##    text_out.insert('end',"Destination: ",'bold', f"\"{unzip_dest}\"" +
+##                    dest_created, 'info_bold')
+    
     text_out.config(state='disabled')
-    print(f"remote url = {remote_url}")
 
     # clear the repo entry field for next use
     entry_repo.delete(0,'end')

@@ -1,8 +1,9 @@
 $user = 'aglorenz'
+$author = 'minifid'
 $repo = 'Tech_academy_C_sharp_projects'
 $pwdFilePath = '.\SecurePassword.txt'
 #$uri = "https://api.github.com/repos/$user/$repo/zipball/"
-$uri = "https://api.github.com/repos/minifid/$repo/zipball"
+$uri = "https://api.github.com/repos/$author/$repo/zipball"
 
 # if password file exists (saved from previous execution of this script)
 
