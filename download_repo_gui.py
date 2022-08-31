@@ -19,6 +19,7 @@ Functions:
 # Using the wildcard is bad practice  W/O it, you have to explicitly state which tool kit you are using
 # which makes for easier reading.  W/O it, you have to prefix widgets with the toolkit like so:  tk.Frame vs Frame
 # from tkinter import *
+from faulthandler import disable
 import tkinter as tk
 from idlelib.tooltip import Hovertip # Tooltips!
 from PIL import Image, ImageTk
@@ -99,31 +100,33 @@ def load_gui(self, base_name):
     self.rb_var = tk.StringVar()  # all Radiobutton widgets will be set to this control variable
     
     self.rb_main = tk.Radiobutton(self.br_frame, anchor="w", font="Verdana 10", text="Main/Master", bg=lt_grey,
-                                  command=lambda: dr_func.clr_branch(self.txt_branch),
                                   variable=self.rb_var, value="master", width=13)
     self.rb_main.grid(row=0, column=0)
 
-##    self.rb_master = tk.Radiobutton(self.br_frame, anchor="w", text="Master", bg=lt_grey,
-##                                    command=lambda: dr_func.clr_branch(self.txt_branch),
-##                                    variable=self.rb_var, value="master", width=9)
-##    self.rb_master.grid(row=0, column=1)
+#    self.rb_master = tk.Radiobutton(self.br_frame, anchor="w", text="Master", bg=lt_grey,
+#                                    command=lambda: dr_func.clr_branch(self.txt_branch),
+#                                    variable=self.rb_var, value="master", width=9)
+#    self.rb_master.grid(row=0, column=1)
 
-    self.rb_other = tk.Radiobutton(self.br_frame, anchor="w", text="Other:", bg=lt_grey,
-                                   command=lambda: self.txt_branch.config(state="normal"),
-                                   variable=self.rb_var, value="other", width=5)
+    self.rb_other = tk.Radiobutton(self.br_frame, anchor="w", text="Other:", bg=lt_grey, variable=self.rb_var, value="other", width=5)
     self.rb_other.grid(row=0, column=1)
     self.rb_var.set("master")  # set the default to Master.  Note: download works with master even if the 
                                # actual branch is main.  However, not vice versa.  So we use master
-
-
+                               
+    self.rb_other.config(command=lambda: dr_func.enable_branch_field(self.entry_branch))
+    self.rb_main.config(command=lambda: dr_func.disable_branch_field(self.entry_branch))
+    
     # Radio Button Entry for custom branch name
-    self.entry_branch = tk.Entry(self.br_frame, font="Verdana 12", validate="focusout",
-                           state="disabled",
+    self.entry_branch = tk.Entry(self.br_frame, font="Verdana 12", validate="focusout", state="disabled",
                            validatecommand=lambda:
                            dr_func.left_justify(self.entry_branch)) # left justify
     branch_tip = Hovertip(self.entry_branch,'Enter repo branch name',
                            hover_delay=500) # Tooltip
+
     self.entry_branch.grid(row=0, column=2)
+
+    #if the rb_other is set to true, then enable the entry_branch entry field
+    
 
     
     # Entry boxes

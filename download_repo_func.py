@@ -29,6 +29,7 @@ from tkinter import filedialog
 
 
 import download_repo
+import download_repo_gui as dr_gui
 import config  # to share info between modules
 
 def center_window(self, w, h):
@@ -96,6 +97,12 @@ def clr_branch(entry_box):
     entry_box.delete(0,'end')
     entry_box.config(state="disabled")
 
+def enable_branch_field(entry_box):
+    entry_box.config(state="normal")
+
+def disable_branch_field(entry_box):
+    entry_box.config(state="disabled")
+
 def print_file(file_path):
     f = open(file_path, 'r')
     print(f.read())
@@ -113,11 +120,26 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
 
     #remote_url = "https://github.com/Alisak1/JavaScript-Projects/blob/main/Basic%20JavaScript%20Projects/Movie%20Website/bootstrap4_project/academy_cinemas.html"
     remote_url = entry_repo.get()
+
+    # If the remote url is empty, or is not a valid github url
+    if remote_url == '' or remote_url.find('github.com') == -1:
+        messagebox.showinfo("Error", "Please enter a valid link!")
+        return
+
     parsed_url = remote_url.split("/")
     user_name = parsed_url[3] # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
     repo_name = parsed_url[4]
     if (btn_branch == "other"):
         branch = alt_branch
+        #Check to see if the branch exists in the repo
+        cmd = f"git ls-remote --heads {user_name}/{repo_name} {branch}"
+        print(f"cmd = {cmd}")
+        completed = run(cmd)
+        if completed.returncode != 0:
+            messagebox.showinfo("Error", "Branch does not exist!")
+            return
+        else:
+            print("Branch exists")
     else:
         branch = btn_branch
     
@@ -152,10 +174,3 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     else:
         print("Download executed successfully!")
         print_file(f"{base_name}.log")
-
-
-
-
-
-
-    
