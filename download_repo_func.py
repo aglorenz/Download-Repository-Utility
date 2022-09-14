@@ -84,8 +84,14 @@ def get_folder(entry_box):
 ##p_out, p_err = p.communicate()
 
 def run(cmd):
-    # temporary execution policy so PS script can run.  (local scripts don't have to be signed for this to run)
-    completed = subprocess.run(["powershell.exe", "-ExecutionPolicy", "RemoteSigned", "-Command", cmd], capture_output=True)
+    # temporary execution policy so PS script can run.
+    # (local scripts don't have to be signed for this to run)
+    completed = subprocess.run(["powershell.exe", "-ExecutionPolicy", "RemoteSigned",
+                                "-Command", cmd], capture_output=True,
+                               text=True, check=True)
+    print("Start")
+    print(completed.returncode)
+    print("End")
     return completed
 
 def left_justify(entry_box):
@@ -95,6 +101,12 @@ def left_justify(entry_box):
 def clr_branch(entry_box):
     entry_box.delete(0,'end')
     entry_box.config(state="disabled")
+
+# Remove trailing substr from a string. Repeat until no more trailing substrings
+def trim_trailing(string, substr):
+    while (string.endswith(substr)):
+        string = string[:-len(substr)] # slice off the trailing substr
+    return string
 
 def print_file(file_path):
     f = open(file_path, 'r')
@@ -142,6 +154,13 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
         # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
         user_name = parsed_url[3] 
         repo_name = parsed_url[4]
+        # remove all leading and trailing white space, then all trailing '.git's
+        # -- GitHub repo names can't end with ".git"  Try creating one on GitHub, you'll see   
+        repo_name = trim_trailing(repo_name.strip(), '.git')
+        print(f"Trimmed repo = '{repo_name}'")
+##        if len(repo_name) == 0:
+##            raise IndexError
+
 
     except IndexError as e:
         text_out.insert('end', f"Fatal: {str(e)}\n", 'err_bold')
@@ -149,7 +168,7 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
         text_out.insert('end',
                         "Ensure URL contains valid Username and Repository like so:\n", 'err')
         text_out.insert('end',
-                        "https://github.com/Alisak1/JavaScript-Projects/...", 'err_bold')
+                        "https://github.com/JoeSchmo/JavaScript-Projects/...", 'err_bold')
         text_out.config(state='disabled')
         sys.exit(1)
 ##        raise Exception("woops")  # this will end the program when not caught with except
@@ -159,7 +178,8 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
         branch = alt_branch
     else:
         branch = btn_branch
-    
+
+    # output the important parameters to the text widget
     text_out.insert('end', f"{remote_url}\n")
     text_out.tag_add('info','end')
     text_out.insert('end',"User: ",'bold', f"'{user_name}'",'info_bold',
@@ -173,8 +193,6 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
 ##    text_out.insert('end',"Destination: ",'bold', f"\"{unzip_dest}\"" +
 ##                    dest_created, 'info_bold')
     
-    text_out.config(state='disabled')
-
     # clear the repo entry field for next use
     entry_repo.delete(0,'end')
 
@@ -187,16 +205,26 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     # Could possible start using Powershell Core, which allows UTF-8 (no BOM)
     # but testing will need to be done.
     # https://4sysops.com/wiki/differences-between-powershell-versions/
-    ps_command = (f"./{base_name}.ps1 -repoName {repo_name} -user {user_name}"
+    ps_command = (f"./{base_name}.ps1 -repoName '{repo_name}' -user '{user_name}'"
                   f" -branch '{branch}' -destination '{unzip_dest}'"
                   f" | Out-File -Encoding ASCII {base_name}.log")
     print(ps_command)
-    result = run(ps_command)
-    if result.returncode != 0:
-        print(f"An error occured: {result.stderr}")
-    else:
-        print("Download executed successfully!")
-        print_file(f"{base_name}.log")
+    result = run(ps_command) 
+    print(type(result))
+    print(result.stdout)  # how do I capture the return code?
+    text_out.insert('end', f"{result.stdout}", 'err_bold')
+    text_out.config(state='disabled')
+##        # If I manually set return code to 1 in powershell script to show an error,
+          # then result never gets assigned and I can't examine anything else returned :(
+##        print(f"An error occured: {e}")  # this fails with
+          # "local variable 'result' referenced before assignment"
+##        
+##    if result.returncode != 0:
+##        print(f"We have an error!  yay!!")
+##    else:
+##
+##        print("Download executed successfully!")
+##        #print_file(f"{base_name}.log")
 
 
 

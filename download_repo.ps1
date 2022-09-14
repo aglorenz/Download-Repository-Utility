@@ -23,12 +23,17 @@ param(
    [string] $destination = "c:\temp" 
 ) 
 $baseName = (Get-Item $PSCommandPath).BaseName # get name of script being executed
-$baseName
-$repoName
-$user
-$branch
-$destination
+# write parms to log file
+Get-Date
+echo ""
+echo "Application Base Name: $baseName"
+echo "Repository Name: $repoName"
+echo "User Name: $($user)"
+echo "Repository Branch: $($branch)"
+echo "Destination Folder: $($destination)"
 
+
+# example
 # $repoName = 'JavaScript-Projects'
 # $user = 'jefflicano82'
 # $branch = 'main'
@@ -36,13 +41,14 @@ $destination
 
 # Force to create a zip file 
 $zipFile = "$destination/$user-$repoName.zip" # prepend user name to differentiate other student's repos
-$zipFile
+echo "Desintation Zip File: $zipFile"
 
 #New-Item $zipFile -ItemType File -Force  # | Out-Null # supress output with Out-Null
 
-# this is the same way as when you click on the green download button
+# this is the same way as when you click on the green download button (supposedly)
 $repositoryZipUrl = "https://github.com/$user/$repoName/archive/$branch.zip"
-$repositoryZipUrl
+echo "Repository Zip File URL: $repositoryZipUrl"
+echo ""
 
 #$repositoryZipUrl = "https://github.com/sandroasp/Microsoft-Integration-and-Azure-Stencils-Pack-for-Visio/archive/master.zip"
 
@@ -50,35 +56,56 @@ $repositoryZipUrl
 #$repositoryZipUrl = "https://api.github.com/repos/$user/$repoName/zipball/$branch"  
 
 # download the zip 
-echo 'Starting downloading the GitHub Repository'
+echo "Downloading: $repositoryZipUrl"
 Try {
 	Invoke-RestMethod -Uri $repositoryZipUrl -OutFile $zipFile -ErrorAction stop
-    
 }
 Catch [System.Net.WebException]{
-	$Error[0].Exception.GetType().FullName
-	echo 'help me'
-	Write-Host 'help me again'
+	echo "StatusCode: $($_.Exception.Response.StatusCode.value__)"
+	echo "StatusDescription: $($_.Exception.Response.StatusDescription)"
+	#Write-Host $Error[0].Exception.GetType().FullName # gets name of error so you can catch it
+	Write-Host $_.Exception.Message
+	Write-Host "Ensure URL contains valid Username, Repository, and Branch."
+	Write-Host "Ensure URL is public."
 	echo $_.Exception.Message
-	echo $_.Exception
-	echo $_
+	exit 0  # Stop execution of the script with exit command.
+			# Can't exit with 1 to signal an error because none of the messages above are returned in stdout or stderr 
+			# stderr returns too much. I only want a little bit of text returned.  So I use stdout instead.
+			# which captures messages written with Write-Host.  Using echo writes to the log file for more details.
+	#return $_.Exception.Message 
 }
-echo 'Download finished'
+echo "Download finished." ""
 
 #Extract Zip File
-echo 'Starting unziping the GitHub Repository locally'
+echo "Unziping:  $zipFile"
 #Expand-Archive -Path $zipFile -Force -DestinationPath $destination
-Expand-Archive -Path $zipFile -Force 
-echo 'Unzip finished'
+Try {
+	Expand-Archive -Path $zipFile -Force 
+}
+Catch {
+	echo "A problem occurred unzipping the file"
+	Write-Host "An error occurred unzipping the file"
+	Write-Host $Error[0].Exception.GetType().FullName
+	Write-Host $_.Exception.Message
+	exit 0
+}
+echo "Unzip finished." ""
 
-# move zip file to the destination - Expand-Archive has a bug:  when using -DestinationPath, it uses the name of the first folder in
-# the zip file instead of the name of the zip file root.  Example:  if I have username-repo.zip and the first folder in the zip
+# Move zip file to the destination - Note: Expand-Archive has a bug:  when using -DestinationPath option, 
+# it uses the name of the first folder in the zip file instead of the name of the zip file root.  
+# Example:  if I have username-repo.zip and the first folder in the zip
 # is repo, then the folder name is repo instead of username-repo.zip
 #
+echo "Moving unzipped folder: $user-$repoName"
+echo "To: $destination"
 Move-Item $user-$repoName $destination
+echo "Move completed." ""
 
-# remove zip file
-Remove-Item -Path $zipFile -Force 
+# Delete the zip file
+echo "Deleting:  $zipFile"
+#Remove-Item -Path $zipFile -Force 
+echo "Zip file deleted." ""
+
 # open unzipped folder for instructor use 
 ii $destination\$user-$repoName
 

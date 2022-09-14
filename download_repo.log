@@ -1,11 +1,26 @@
-download_repo
-WebAppTutorial1
-jefflicano82
-master
-C:/Users/Andy/Documents/_Student Repos
-C:/Users/Andy/Documents/_Student Repos/jefflicano82-WebAppTutorial1.zip
-https://github.com/jefflicano82/WebAppTutorial1/archive/master.zip
-Starting downloading the GitHub Repository
-Download finished
-Starting unziping the GitHub Repository locally
-Unzip finished
+
+Wednesday, September 14, 2022 10:23:42 AM
+
+Application Base Name: download_repo
+Repository Name: C-Projects
+User Name: brynnpeirce
+Repository Branch: master
+Destination Folder: C:/Users/Andy/Documents/_Student Repos
+Desintation Zip File: C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
+Repository Zip File URL: https://github.com/brynnpeirce/C-Projects/archive/master.zip
+
+Downloading: https://github.com/brynnpeirce/C-Projects/archive/master.zip
+Download finished.
+
+Unziping:  C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
+Unzip finished.
+
+Moving unzipped folder: brynnpeirce-C-Projects
+To: C:/Users/Andy/Documents/_Student Repos
+Move completed.
+
+Deleting:  C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
+Zip file deleted.
+
+
+

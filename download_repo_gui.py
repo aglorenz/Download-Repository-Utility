@@ -20,6 +20,13 @@ Functions:
 # which makes for easier reading.  W/O it, you have to prefix widgets with the toolkit like so:  tk.Frame vs Frame
 # from tkinter import *
 import tkinter as tk
+
+import pyglet
+pyglet.font.add_file('Impasse.otf')
+pyglet.font.add_file('Venture13.ttf')
+##pyglet.font.add_file('./OTR type/fonts/webfonts/OTRtype-Regular.woff')
+
+
 from idlelib.tooltip import Hovertip # Tooltips!
 from PIL import Image, ImageTk
 
@@ -36,7 +43,9 @@ white = "#FFF"
 background = "#ebecee" # light_grey
 #background = "#F0F0F0" 
 btn_fg = white
-btn_bg = "#182A53"     # dark blue
+#btn_bg = "#182A53"     # dark blue
+#btn_bg = "#0067b8" # turquois blue
+btn_bg = "#005faa"
 lbl_color = btn_bg
 ##112552 # for dark blue letters
 
@@ -67,19 +76,24 @@ def load_gui(self, base_name):
     # images #
     ##########
 
-    # Even though the image had transparancy, it wasn't transparent when used in the app.
-    # Had to set the background to color to same as rest of the app. 
-    image=Image.open('TA_logo.png')  
+    # Even though the image had transparency, it wasn't transparent when used in the app.
+    # Had to set the background color to the same as rest of the app. 
+    img_logo=Image.open('DRU-Logo.png')  
+    img_icon=Image.open('DRU-Favicon.png')  # this one has transparency for the favicon
 
     # Resize the image in the given (width, height)
-    img=image.resize((100,100))
+    logo=img_logo.resize((100,100))
 
-    # Convert the image in TkImage
-    self.logo=ImageTk.PhotoImage(img)
+    # Convert the images in TkImage
+    self.logo=ImageTk.PhotoImage(logo)
+    self.icon=ImageTk.PhotoImage(img_icon)
+
+    # set the icon in the title bar
+    self.master.iconphoto(False, self.icon) # 
     
 ##    self.logo = ImageTk.PhotoImage(Image.open("TA_logo3.jpg").resize((55,55)))
     
-    self.lbl_logo = tk.Label(self.master, image = self.logo, borderwidth=0) # must get rid of border or it shows
+    self.lbl_logo = tk.Label(self.master, image=self.logo, borderwidth=0) # must get rid of border or it shows
     self.lbl_logo.grid(row=0, column=0, padx=(20,0), pady=(10,0))
 
     ##########
@@ -87,22 +101,22 @@ def load_gui(self, base_name):
     ##########
     
         # Repo Source
-    self.lbl_app = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Verdana 24 bold underline"),
-                                 text='Download Repository Utility')
+    self.lbl_app = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Venture13", 18, "underline"),
+                                 text='DOWNLOAD REPOSITORY UTILITY')
     self.lbl_app.grid(row=0,column=1,padx=(18,0),pady=(25,18),sticky='w')
 
         # Repo URL
-    self.lbl_repo_src = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Verdana Bold", 12),
+    self.lbl_repo_src = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Venture13", 13),
                                  text='Enter Repo URL:')
     self.lbl_repo_src.grid(row=1,column=0,padx=(20,0), pady=(0,5), sticky='w')
 
         # Select Repo Branch
-    self.lbl_branch = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Verdana Bold", 12),
+    self.lbl_branch = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Venture13", 13),
                                  text='Repo Branch:')
     self.lbl_branch.grid(row=2, column=0, padx=(20,0), sticky='sw')
 
         # Execution Output
-    self.lbl_output = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Verdana Bold", 12),
+    self.lbl_output = tk.Label(self.master, height=1, bg=background, fg=lbl_color, font=("Venture13", 13),
                                  text='Program Output:')
     self.lbl_output.grid(row=4, column=0, padx=(20,0), pady=(20,0), sticky='w')
 
@@ -122,7 +136,7 @@ def load_gui(self, base_name):
                                   variable=self.rb_var, value="master", width=13)
     self.rb_main.grid(row=0, column=0)
 
-    self.rb_other = tk.Radiobutton(self.br_frame, anchor="w", text="Other:", bg=lt_grey,
+    self.rb_other = tk.Radiobutton(self.br_frame, anchor="w", font="Verdana 10", text="Other:", bg=lt_grey,
                                    command=lambda: self.entry_branch.config(state="normal"),
                                    variable=self.rb_var, value="other", width=5)
     self.rb_other.grid(row=0, column=1)
@@ -169,22 +183,22 @@ def load_gui(self, base_name):
 
         # Browse Destination Button
     self.btn_brws_dest = tk.Button(self.master, height=1, text='Browse Dest...',
-                                   font=("Verdana", 12), bg=btn_bg, fg=btn_fg,
+                                   font=("Venture13", 12), bg=btn_bg, fg=btn_fg,
                                    command=lambda: dr_func.get_folder(self.entry_dest))
     btn_dest_tip = Hovertip(self.btn_brws_dest, 'Click to select Destination folder\n'
                             'Default is "C:\\temp"', hover_delay=500) # Tooltip
-    self.btn_brws_dest.grid(row=3, column=0, padx=(24,0), pady=(12,0), sticky='we')
+    self.btn_brws_dest.grid(row=3, column=0, padx=(22,0), ipady=1, pady=(12,0), sticky='we')
 
         # Download Repo Button
     self.btn_dwnld = tk.Button(self.master, height=2, text='Download Repo',
-                               font=("Verdana", 12), bg=btn_bg, fg=btn_fg,
+                               font=("Venture13", 13), bg=btn_bg, fg=btn_fg,
                                command=lambda: eval(self.download)) # download on button click
     btn_dwnld_tip = Hovertip(self.btn_dwnld,'Click to download and unzip\n'
                              'repo into desination folder.', hover_delay=500) # Tooltip
     self.btn_dwnld.grid(row=6, column=0, padx=(22,0), pady=(12,20), sticky='we')
     
         # Close application Button
-    self.btn_close = tk.Button(self.master, width=12, height=2, text='Close', font=("Verdana", 12),
+    self.btn_close = tk.Button(self.master, width=12, height=2, text='Close', font=("Venture13", 13),
                                bg=btn_bg, fg=btn_fg, command=self.master.destroy)
     self.btn_close.grid(row=6, column=1, padx=(0,19), pady=(12,20), sticky='e')
 
