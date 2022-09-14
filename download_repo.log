@@ -1,26 +1,17 @@
 
-Wednesday, September 14, 2022 10:23:42 AM
+Wednesday, September 14, 2022 14:43:08
 
 Application Base Name: download_repo
-Repository Name: C-Projects
-User Name: brynnpeirce
+Repository Name: Weather-APIsdfgsd
+User Name: Vexelior
 Repository Branch: master
-Destination Folder: C:/Users/Andy/Documents/_Student Repos
-Desintation Zip File: C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
-Repository Zip File URL: https://github.com/brynnpeirce/C-Projects/archive/master.zip
+Destination Folder: C:/Users/Developer/Documents
+Desintation Zip File: C:/Users/Developer/Documents/Vexelior-Weather-APIsdfgsd.zip
+Repository Zip File URL: https://github.com/Vexelior/Weather-APIsdfgsd/archive/refs/heads/master.zip
 
-Downloading: https://github.com/brynnpeirce/C-Projects/archive/master.zip
-Download finished.
-
-Unziping:  C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
-Unzip finished.
-
-Moving unzipped folder: brynnpeirce-C-Projects
-To: C:/Users/Andy/Documents/_Student Repos
-Move completed.
-
-Deleting:  C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
-Zip file deleted.
-
+Downloading: https://github.com/Vexelior/Weather-APIsdfgsd/archive/refs/heads/master.zip
+StatusCode: 404
+StatusDescription: Not Found
+The remote server returned an error: (404) Not Found.
 
 

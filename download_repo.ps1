@@ -46,7 +46,8 @@ echo "Desintation Zip File: $zipFile"
 #New-Item $zipFile -ItemType File -Force  # | Out-Null # supress output with Out-Null
 
 # this is the same way as when you click on the green download button (supposedly)
-$repositoryZipUrl = "https://github.com/$user/$repoName/archive/$branch.zip"
+$repositoryZipUrl = "https://github.com/$user/$repoName/archive/refs/heads/$branch.zip"
+
 echo "Repository Zip File URL: $repositoryZipUrl"
 echo ""
 
@@ -58,7 +59,10 @@ echo ""
 # download the zip 
 echo "Downloading: $repositoryZipUrl"
 Try {
-	Invoke-RestMethod -Uri $repositoryZipUrl -OutFile $zipFile -ErrorAction stop
+	$wc = New-Object net.webclient
+	$wc.DownloadFile($repositoryZipUrl, $zipFile)
+	
+	Write-Progress -Activity "Downloading $repoName" -Status "Downloaded $zipFile" -PercentComplete 100
 }
 Catch [System.Net.WebException]{
 	echo "StatusCode: $($_.Exception.Response.StatusCode.value__)"
@@ -78,9 +82,9 @@ echo "Download finished." ""
 
 #Extract Zip File
 echo "Unziping:  $zipFile"
-#Expand-Archive -Path $zipFile -Force -DestinationPath $destination
 Try {
-	Expand-Archive -Path $zipFile -Force 
+	#Expand-Archive -Path $zipFile -Force
+	Expand-Archive -Path $zipFile -Force -DestinationPath $destination
 }
 Catch {
 	echo "A problem occurred unzipping the file"
