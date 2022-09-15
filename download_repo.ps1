@@ -61,8 +61,6 @@ echo "Downloading: $repositoryZipUrl"
 Try {
 	$wc = New-Object net.webclient
 	$wc.DownloadFile($repositoryZipUrl, $zipFile)
-	
-	Write-Progress -Activity "Downloading $repoName" -Status "Downloaded $zipFile" -PercentComplete 100
 }
 Catch [System.Net.WebException]{
 	echo "StatusCode: $($_.Exception.Response.StatusCode.value__)"

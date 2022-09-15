@@ -27,7 +27,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
 
-import download_repo_gui
+import download_repo_gui as gui
 import download_repo
 import config  # to share info between modules
 
@@ -145,6 +145,8 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     # prepare the text box for output
     text_out.config(state='normal')
     text_out.delete(1.0,'end')
+
+    messagebox.showinfo("Download", "Click OK to download the repo. This may take a few minutes depending on the size of the repository.")
 
     # parse the repo URL to get user name and repository name    
     try:
