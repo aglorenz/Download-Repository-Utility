@@ -22,9 +22,9 @@ Functions:
 import tkinter as tk
 
 import pyglet
-# pyglet.font.add_file('Impasse.otf')
-# pyglet.font.add_file('Venture13.ttf')
-# pyglet.font.add_file('./OTR type/fonts/webfonts/OTRtype-Regular.woff')
+pyglet.font.add_file('Impasse.otf')
+pyglet.font.add_file('Venture13.ttf')
+##pyglet.font.add_file('./OTR type/fonts/webfonts/OTRtype-Regular.woff')
 
 
 from idlelib.tooltip import Hovertip # Tooltips!

@@ -27,7 +27,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
 
-import download_repo_gui as gui
+
 import download_repo
 import config  # to share info between modules
 
@@ -146,11 +146,9 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     text_out.config(state='normal')
     text_out.delete(1.0,'end')
 
-    messagebox.showinfo("Download", "Click OK to download the repo. This may take a few minutes depending on the size of the repository.")
-
-    # parse the repo URL to get user name and repository name    
+    # parse the repo URL to get user name and repository name
+    
     try:
-        print(entry_repo)
         remote_url = entry_repo.get()
         parsed_url = remote_url.split("/")
         # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
@@ -214,15 +212,6 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     result = run(ps_command) 
     print(type(result))
     print(result.stdout)  # how do I capture the return code?
-
-    # Error and success messages for the user 
-    if result.stdout is not None and result.stdout.find("error") == -1 and result.stdout.find("fatal") == -1:
-        messagebox.showinfo("Download Complete", "Repository downloaded successfully.")
-        text_out.insert('end', "Download Complete.\n", 'bold')
-    else:
-        messagebox.showerror("Download Failed", "Repository download failed.")
-        text_out.insert('end', "Download Failed.\n", 'err_bold')
-
     text_out.insert('end', f"{result.stdout}", 'err_bold')
     text_out.config(state='disabled')
 ##        # If I manually set return code to 1 in powershell script to show an error,
