@@ -1,26 +1,74 @@
 
-Wednesday, September 14, 2022 10:23:42 AM
+Monday, September 26, 2022 5:03:24 PM
 
 Application Base Name: download_repo
-Repository Name: C-Projects
-User Name: brynnpeirce
+Repository Name: TheTechAcademyC-SharpProjects
+User Name: jmternes
 Repository Branch: master
 Destination Folder: C:/Users/Andy/Documents/_Student Repos
-Desintation Zip File: C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
-Repository Zip File URL: https://github.com/brynnpeirce/C-Projects/archive/master.zip
+Desintation Zip File: C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects.zip
+Repository Zip File URL: https://github.com/jmternes/TheTechAcademyC-SharpProjects/archive/refs/heads/master.zip
 
-Downloading: https://github.com/brynnpeirce/C-Projects/archive/master.zip
-Download finished.
+Downloading: https://github.com/jmternes/TheTechAcademyC-SharpProjects/archive/refs/heads/master.zip
+Download completed.
 
-Unziping:  C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
-Unzip finished.
+Destination Folder: C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects
 
-Moving unzipped folder: brynnpeirce-C-Projects
-To: C:/Users/Andy/Documents/_Student Repos
-Move completed.
+Destination Folder Does Not Exist.
+Creating Folder: C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects
 
-Deleting:  C:/Users/Andy/Documents/_Student Repos/brynnpeirce-C-Projects.zip
+PSPath            : Microsoft.PowerShell.Core\FileSystem::C:\Users\Andy\Documents\_Student 
+                    Repos\jmternes-TheTechAcademyC-SharpProjects
+PSParentPath      : Microsoft.PowerShell.Core\FileSystem::C:\Users\Andy\Documents\_Student Repos
+PSChildName       : jmternes-TheTechAcademyC-SharpProjects
+PSDrive           : C
+PSProvider        : Microsoft.PowerShell.Core\FileSystem
+PSIsContainer     : True
+Name              : jmternes-TheTechAcademyC-SharpProjects
+FullName          : C:\Users\Andy\Documents\_Student Repos\jmternes-TheTechAcademyC-SharpProjects
+Parent            : _Student Repos
+Exists            : True
+Root              : C:\
+Extension         : 
+CreationTime      : 9/26/2022 5:03:25 PM
+CreationTimeUtc   : 9/27/2022 12:03:25 AM
+LastAccessTime    : 9/26/2022 5:03:25 PM
+LastAccessTimeUtc : 9/27/2022 12:03:25 AM
+LastWriteTime     : 9/26/2022 5:03:25 PM
+LastWriteTimeUtc  : 9/27/2022 12:03:25 AM
+Attributes        : Directory
+Mode              : d-----
+BaseName          : jmternes-TheTechAcademyC-SharpProjects
+Target            : {}
+LinkType          : 
+
+
+Unziping File:  C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects.zip
+To Folder:      C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects
+
+7-Zip 19.00 (x64) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Scanning the drive for archives:
+1 file, 1091074 bytes (1066 KiB)
+
+Extracting archive: C:\Users\Andy\Documents\_Student Repos\jmternes-TheTechAcademyC-SharpProjects.zip
+--
+Path = C:\Users\Andy\Documents\_Student Repos\jmternes-TheTechAcademyC-SharpProjects.zip
+Type = zip
+Physical Size = 1091074
+Comment = ae0f96640a324ff3d659962f6c7ecbff4e93d9b7
+
+Everything is Ok
+
+Folders: 49
+Files: 150
+Size:       2443335
+Compressed: 1091074
+Unzip completed.
+
+Deleting:  C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects.zip
 Zip file deleted.
 
+Opening Top Level Archive Folder
 
 

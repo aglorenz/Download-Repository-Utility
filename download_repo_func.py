@@ -6,18 +6,21 @@
 # Tested OS:  This code was written and tested to work with Windows 10.
 
 '''
-Module with functions to facilitate the file transfer application
+Module with functions to facilitate the download repository app
 
 Functions:
 
     center_window(self, w, h)
     get_folder(entry_box)
     run(cmd)
+    left_justify(entry_box)
+    clr_branch(entry_box)
+    trim_trailing(string, substr)
     print_file(file_path)
+    validate_dest(unzip_dest, text_out)
     download(remote_url, unzip_dest)
     
 '''
-
 
 import subprocess, sys, os
 import configparser # to write a .ini file for the app
@@ -27,9 +30,9 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
 
-
-import download_repo
-import config  # to share info between modules
+import download_repo_gui as dr_gui
+import download_repo as dr
+import download_repo_info_share as dr_is # to share info between modules
 
 def center_window(self, w, h):
     '''Center the application window on the user's screen
@@ -57,7 +60,8 @@ def center_window(self, w, h):
     self.master.geometry('{}x{}+{}+{}'.format(w, h, x, y))
 
 def get_folder(entry_box):
-    '''Browse for a file folder and store the folder path in an entry_box
+    '''
+    Browse for a file folder and store the folder path in an entry widget
 
     Parameters
     ----------
@@ -73,78 +77,175 @@ def get_folder(entry_box):
     folder_path = filedialog.askdirectory()
     entry_box.insert(0,folder_path)
 
-##p = subprocess.Popen(["powershell.exe", 
-##              "C:\\Users\\Andy\\Documents\\_Student Repos\\download1.ps1"], 
-##              stdout=sys.stdout)
-##p.communicate()
-
-##p = subprocess.Popen(["powershell.exe", 
-##              "C:\\Users\\Andy\\Documents\\_Student Repos\\download1.ps1"], 
-##              stdout=subprocess.PIPE)
-##p_out, p_err = p.communicate()
-
 def run(cmd):
+    '''
+    Run a subprocess to execute a Powershell script.
+
+    Parameters
+    ----------
+    cmd : powershell command to run.  It can be a script with parms
+
+    Returns
+    -------
+    An obj of type subprocess.CompletedProcess
+
+    obj.returncode : status of 1 or 0.  Lets us know if the actual subproces
+        was successfull.  We can't pass data back from the powershell script
+        in the return code.  If we try to exit the script with anything other
+        than 0, then nothing gets returned back to python.
+
+    obj.stdout : We can return info back to python using Write-Host in PS
+        We use this for short and sweet error/info messages that get output to
+        the user in the DRU text widget.
+                
+    '''
+
+
     # temporary execution policy so PS script can run.
     # (local scripts don't have to be signed for this to run)
-    completed = subprocess.run(["powershell.exe", "-ExecutionPolicy", "RemoteSigned",
-                                "-Command", cmd], capture_output=True,
-                               text=True, check=True)
-    print("Start")
-    print(completed.returncode)
-    print("End")
+    completed = subprocess.run(["powershell.exe", "-ExecutionPolicy",
+                                "RemoteSigned", "-Command", cmd],
+                               capture_output=True, text=True, check=True)
     return completed
 
 def left_justify(entry_box):
-    entry_box.xview(0)  # left justify contents to ensure view of first character
-    return True         # must return true to keep the callback turned on
+    '''
+    Left justify the content of a given entry widget.
+    This will ensure visibility of first characters of user entry
+
+    Parameters
+    ----------
+    entry_box : tkinter Entry widget
+
+    Returns
+    -------
+    True : Must return True to keep the call back turned on.
+    '''
+    
+    entry_box.xview(0)  # Left justify content so we can see first chars
+    return True         # Must return True to keep the callback turned on
 
 def clr_branch(entry_box):
+    '''
+    Clear and disable the given entry widget. Used for the custom branch entry.
+
+    Parameters
+    ----------
+    entry_box : tkinter Entry widget
+
+    Returns
+    -------
+
+    '''
+    
     entry_box.delete(0,'end')
     entry_box.config(state="disabled")
 
-# Remove trailing substr from a string. Repeat until no more trailing substrings
-def trim_trailing(string, substr):
-    while (string.endswith(substr)):
-        string = string[:-len(substr)] # slice off the trailing substr
-    return string
+
+def trim_trailing(input_str, substr):
+    '''
+    Remove trailing substr from a string. Repeat until no more trailing
+    substrings
+
+    Parameters
+    ----------
+    input_str : string to trim
+    substr: substring to trim from input_str
+
+    Returns
+    -------
+    input_str trimmed of all traling occurrences of substr
+    '''
+
+    while (input_str.endswith(substr)):
+        input_str = input_str[:-len(substr)] # slice off the trailing substr
+    return input_str
 
 def print_file(file_path):
+    '''
+    Print the contents of a file.
+    
+    Parameters
+    ----------
+    file_path : path to the file to print
+
+    Returns
+    -------
+    
+    '''
+
     f = open(file_path, 'r')
     print(f.read())
 
 def validate_dest(unzip_dest, text_out):
-    # set to a message for the text output if destination folder is auto-created
+    '''
+    Validate the destination folder provided by user. If it doesn't exist, then
+    the default location of c:\temp is used.  This is created if needed.
+    
+    Parameters
+    ----------
+    unzip_dest : folder that will contain the unzipped repository
+    text_out : text widget for displaying application info and error output
+
+    Returns
+    -------
+    The unzip destination.  Updated to the default path if the one provided
+    doesn't exist.
+    '''
+    # This var will be set to a message for the text output if we have to create
+    # the destination folder
     dest_created = ""
+    # If the unzip destination doesn't exist, set to the default, C:/temp
     if not os.path.exists(unzip_dest):
-        # create default directory if not exists
+        text_out.insert('end', "Warning:Path Not Found: ", 'err_bold',
+                        f"'{unzip_dest}'\n", 'info_bold',
+                        "Using Default Path Instead.\n", 'err_bold')
         unzip_dest = 'C:/temp'
-        dest_created = " --Default folder"
+        dest_created = " <--Default path"
+        # Try to create the default folder if it doesn't exist
         if not os.path.exists(unzip_dest):
             try:
-                os.makedirs(unzip_dest) # , exist_ok=True)
+                os.makedirs(unzip_dest)
                 dest_created += " (Auto-created)\n"
             except OSError as e:
                 text_out.insert('end', f"Fatal: {str(e)}\n", 'err_bold')
-                text_out.insert('end', f"Cannot create folder: '{unzip_dest}'\n", 'err')
+                text_out.insert('end', f"Cannot create folder: '{unzip_dest}'\n",
+                                'err')
                 text_out.config(state='disabled')
                 sys.exit(1)
+    # Message to user
     text_out.insert('end',"Destination: ",'bold', f"'{unzip_dest}'",'info_bold',
                     f"{dest_created}\n")                
     return unzip_dest
 
-def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
-    # save the dest folder path to an .ini file
+def download(self):
+    # get the values needed by this method
+    base_name = dr_is.base_name # get base name from our info share module
+    ini_file = base_name + '.ini'
+
+    entry_repo = self.entry_repo
+    btn_branch = self.rb_var.get() # get the id of the radio button selected
+
+    entry_branch = self.entry_branch
+    alt_branch = entry_branch.get() # get branch name entered by user
+
+    text_out = self.txt_out 
+    unzip_dest = self.entry_dest.get() # get the dest folder entered by user
+
+    # save the dest folder path to an .ini file for next App start up
     ini_config = configparser.ConfigParser()
     ini_config['zipfile.dest'] = {}
     ini_config['zipfile.dest']['destination'] = unzip_dest
     with open('download_repo.ini', 'w') as configfile:
               ini_config.write(configfile)
 
-    base_name = config.base_name # get base name from our config module
-
     # prepare the text box for output
     text_out.config(state='normal')
     text_out.delete(1.0,'end')
+
+    # reset the branch back to master/main after capturing it above
+    self.rb_var.set('master')
+    clr_branch(entry_branch)
 
     # parse the repo URL to get user name and repository name
     
@@ -199,21 +300,25 @@ def download(entry_repo, unzip_dest, btn_branch, alt_branch, text_out):
     print(f"Username={user_name}, RepoName={repo_name}, Branch={branch}")
     
     # Note: using "-Encoding ASCII" because Powershell 5.1 doesn't support
-    # UTF-8 (without BOM) When usig UTF-8, the beginning of the output looks funky
+    # UTF-8 without BOM. When usig UTF-8, the beginning of the output looks funky
     # However, using ASCII eliminates any special characters like ñ and results in
     # a ? instead.  Small risk considering what we are using this for.
-    # Could possible start using Powershell Core, which allows UTF-8 (no BOM)
+    # Could possibly start using Powershell Core, which allows UTF-8 (no BOM)
     # but testing will need to be done.
     # https://4sysops.com/wiki/differences-between-powershell-versions/
     ps_command = (f"./{base_name}.ps1 -repoName '{repo_name}' -user '{user_name}'"
                   f" -branch '{branch}' -destination '{unzip_dest}'"
                   f" | Out-File -Encoding ASCII {base_name}.log")
     print(ps_command)
-    result = run(ps_command) 
+    result = run(ps_command)
+    print("hello Andyyy")
     print(type(result))
     print(result.stdout)  # how do I capture the return code?
     text_out.insert('end', f"{result.stdout}", 'err_bold')
     text_out.config(state='disabled')
+
+
+
 ##        # If I manually set return code to 1 in powershell script to show an error,
           # then result never gets assigned and I can't examine anything else returned :(
 ##        print(f"An error occured: {e}")  # this fails with
