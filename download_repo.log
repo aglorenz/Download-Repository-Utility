@@ -1,72 +1,71 @@
 
-Monday, September 26, 2022 5:03:24 PM
+Thursday, October 13, 2022 10:11:21 AM
 
 Application Base Name: download_repo
-Repository Name: TheTechAcademyC-SharpProjects
-User Name: jmternes
+Repository Name: Python-Projects
+User Name: Nowlin
 Repository Branch: master
-Destination Folder: C:/Users/Andy/Documents/_Student Repos
-Desintation Zip File: C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects.zip
-Repository Zip File URL: https://github.com/jmternes/TheTechAcademyC-SharpProjects/archive/refs/heads/master.zip
+Destination Folder: C:/temp
+Desintation Zip File: C:/temp/Nowlin-Python-Projects.zip
+Repository Zip File URL: https://github.com/Nowlin/Python-Projects/archive/refs/heads/master.zip
 
-Downloading: https://github.com/jmternes/TheTechAcademyC-SharpProjects/archive/refs/heads/master.zip
+Downloading: https://github.com/Nowlin/Python-Projects/archive/refs/heads/master.zip
 Download completed.
 
-Destination Folder: C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects
+Destination Folder: C:/temp/Nowlin-Python-Projects
 
 Destination Folder Does Not Exist.
-Creating Folder: C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects
+Creating Folder: C:/temp/Nowlin-Python-Projects
 
-PSPath            : Microsoft.PowerShell.Core\FileSystem::C:\Users\Andy\Documents\_Student 
-                    Repos\jmternes-TheTechAcademyC-SharpProjects
-PSParentPath      : Microsoft.PowerShell.Core\FileSystem::C:\Users\Andy\Documents\_Student Repos
-PSChildName       : jmternes-TheTechAcademyC-SharpProjects
+PSPath            : Microsoft.PowerShell.Core\FileSystem::C:\temp\Nowlin-Python-Projects
+PSParentPath      : Microsoft.PowerShell.Core\FileSystem::C:\temp
+PSChildName       : Nowlin-Python-Projects
 PSDrive           : C
 PSProvider        : Microsoft.PowerShell.Core\FileSystem
 PSIsContainer     : True
-Name              : jmternes-TheTechAcademyC-SharpProjects
-FullName          : C:\Users\Andy\Documents\_Student Repos\jmternes-TheTechAcademyC-SharpProjects
-Parent            : _Student Repos
+Name              : Nowlin-Python-Projects
+FullName          : C:\temp\Nowlin-Python-Projects
+Parent            : temp
 Exists            : True
 Root              : C:\
 Extension         : 
-CreationTime      : 9/26/2022 5:03:25 PM
-CreationTimeUtc   : 9/27/2022 12:03:25 AM
-LastAccessTime    : 9/26/2022 5:03:25 PM
-LastAccessTimeUtc : 9/27/2022 12:03:25 AM
-LastWriteTime     : 9/26/2022 5:03:25 PM
-LastWriteTimeUtc  : 9/27/2022 12:03:25 AM
+CreationTime      : 10/13/2022 10:11:21 AM
+CreationTimeUtc   : 10/13/2022 5:11:21 PM
+LastAccessTime    : 10/13/2022 10:11:21 AM
+LastAccessTimeUtc : 10/13/2022 5:11:21 PM
+LastWriteTime     : 10/13/2022 10:11:21 AM
+LastWriteTimeUtc  : 10/13/2022 5:11:21 PM
 Attributes        : Directory
 Mode              : d-----
-BaseName          : jmternes-TheTechAcademyC-SharpProjects
+BaseName          : Nowlin-Python-Projects
 Target            : {}
 LinkType          : 
 
 
-Unziping File:  C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects.zip
-To Folder:      C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects
+Unziping File:  C:/temp/Nowlin-Python-Projects.zip
+To Folder:      C:/temp/Nowlin-Python-Projects
 
 7-Zip 19.00 (x64) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
 
 Scanning the drive for archives:
-1 file, 1091074 bytes (1066 KiB)
+1 file, 4696 bytes (5 KiB)
 
-Extracting archive: C:\Users\Andy\Documents\_Student Repos\jmternes-TheTechAcademyC-SharpProjects.zip
+Extracting archive: C:\temp\Nowlin-Python-Projects.zip
 --
-Path = C:\Users\Andy\Documents\_Student Repos\jmternes-TheTechAcademyC-SharpProjects.zip
+Path = C:\temp\Nowlin-Python-Projects.zip
 Type = zip
-Physical Size = 1091074
-Comment = ae0f96640a324ff3d659962f6c7ecbff4e93d9b7
+Physical Size = 4696
+Comment = 7273321f2e3e522e9e6b8218c4fa727a1974bdf7
 
 Everything is Ok
 
-Folders: 49
-Files: 150
-Size:       2443335
-Compressed: 1091074
+Folders: 1
+Files: 7
+Size:       31397
+Compressed: 4696
 Unzip completed.
 
-Deleting:  C:/Users/Andy/Documents/_Student Repos/jmternes-TheTechAcademyC-SharpProjects.zip
+Deleting:  C:/temp/Nowlin-Python-Projects.zip
 Zip file deleted.
 
 Opening Top Level Archive Folder

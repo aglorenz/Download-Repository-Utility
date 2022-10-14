@@ -197,7 +197,7 @@ def validate_dest(unzip_dest, text_out):
     dest_created = ""
     # If the unzip destination doesn't exist, set to the default, C:/temp
     if not os.path.exists(unzip_dest):
-        text_out.insert('end', "Warning:Path Not Found: ", 'err_bold',
+        text_out.insert('end', "Warning: Destination Path Not Found: ", 'err_bold',
                         f"'{unzip_dest}'\n", 'info_bold',
                         "Using Default Path Instead.\n", 'err_bold')
         unzip_dest = 'C:/temp'

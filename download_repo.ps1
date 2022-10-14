@@ -8,7 +8,8 @@
 #                        Prerequisites: Powershell v5.1				 #
 #                                                                    #
 ######################################################################
-
+using assembly System.Net.Http
+using namespace System.Net.Http
 param( 
    [Parameter(Mandatory=$True)] 
    [string] $repoName, 
@@ -61,8 +62,30 @@ echo "Downloading: $repositoryZipUrl"
 Try {
 	#Invoke-RestMethod -Uri $repositoryZipUrl -OutFile $zipFile -ErrorAction stop 
 	#Invoke-WebRequest -Uri $repositoryZipUrl -OutFile $zipFile -UseBasicParsing
-	$wc = New-Object net.webclient
-	$wc.DownloadFile($repositoryZipUrl, $zipFile)
+
+# $webClient = [System.Net.WebClient]::new()
+# # Download the file
+# $webClient.DownloadFile($repositoryZipUrl, $zipFile)
+
+	# $wc = New-Object net.webclient
+	# # $wc.Headers.Add(Net.HttpRequestHeader.Cookie, "security=true") # trying to get around the "Too many automatic redirections were attempted" error
+	# $wc.DownloadFile($repositoryZipUrl, $zipFile)
+#$zipFile="C:/Users/Andy/Documents/_Student Repos/aglorenz-andy-test.zip"
+# Create the HTTP client download request
+$httpClient = New-Object System.Net.Http.HttpClient
+$response = $httpClient.GetAsync($repositoryZipUrl)
+$response.Wait()
+ 
+# Create a file stream to pointed to the output file destination
+$outputFileStream = [System.IO.FileStream]::new($zipFile, [System.IO.FileMode]::Create, [System.IO.FileAccess]::Write)
+ 
+# Stream the download to the destination file stream
+$downloadTask = $response.Result.Content.CopyToAsync($outputFileStream)
+$downloadTask.Wait()
+ 
+# Close the file stream
+$outputFileStream.Close()	
+	
 
 	Write-Progress -Activity "Downloading $repoName" -Status "Downloaded $zipFile" -PercentComplete 100
 }
@@ -129,7 +152,7 @@ echo "Unzip completed." ""
 
 # Delete the zip file
 echo "Deleting:  $zipFile"
-Remove-Item -Path $zipFile -Force 
+#Remove-Item -Path $zipFile -Force 
 echo "Zip file deleted." ""
 
 # Open the unzipped top level repository folder in file explorer.  

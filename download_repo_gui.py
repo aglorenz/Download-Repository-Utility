@@ -21,7 +21,16 @@ Functions:
 # W/O it, you have to prefix widgets with the toolkit like so:
 # tk.Frame vs Frame
 # from tkinter import *
-import tkinter as tk
+import tkinter as tk, tkinter.ttk as ttk
+from typing import Union
+
+
+# from idlelib.tooltip import Hovertip # Tooltips!
+from DRU_tooltip import Hovertip  # Tooltips!
+from PIL import Image, ImageTk
+
+# Import our other modules
+import download_repo_func as dr_func
 
 import pyglet
 # The following works around the bug when pyglet imports a font and the
@@ -30,14 +39,10 @@ import pyglet
 from pyglet.libs.win32 import constants
 constants.COINIT_MULTITHREADED = 0x2  # 0x2 = COINIT_APARTMENTTHREADED
 
-pyglet.font.add_file('Venture13.ttf') # Super cool mod computer looking font
+# Add custom computer looking font
+pyglet.font.add_file('Venture13.ttf')
 
-
-from idlelib.tooltip import Hovertip # Tooltips!
-from PIL import Image, ImageTk
-
-# Import our other modules
-import download_repo_func as dr_func
+Widget = Union[tk.Widget, ttk.Widget] #
 
 ################
 #    Colors    #
@@ -46,13 +51,12 @@ import download_repo_func as dr_func
 lt_grey = "#E3E3E3"
 med_grey = "#C0C0C0"
 white = "#FFF"
-background = "#ebecee" # light_grey
+background = "#ebecee"  # light_grey
 btn_fg = white
-#btn_bg = "#182A53"     # dark blue
-#btn_bg = "#0067b8" # turquois blue
-btn_bg = "#005faa" # med-dark blue
+btn_bg = "#005faa"  # med-dark blue
 lbl_color = btn_bg
 logo_orng = "#fd750d"
+
 
 
 def load_gui(self):
@@ -72,6 +76,10 @@ def load_gui(self):
 
     self.master.config(bg=background)
 
+    # Dictionary to save space when passing parms to widget_fn
+    # Hover in and out colors for buttons
+    dict_btn_hvr_in = {'bg_color': logo_orng, 'fg_color': btn_fg}
+    dict_btn_hvr_out = {'bg_color': btn_bg, 'fg_color': btn_fg}
     ##########
     # Images #
     ##########
@@ -207,7 +215,8 @@ def load_gui(self):
                                validate="focusout", validatecommand=lambda:
                                dr_func.left_justify(self.entry_repo))
     entry_repo_tip = Hovertip(self.entry_repo,
-                              'Paste repository link and press Enter.',
+                              'Paste   repository   link,   then\n'
+                              'press  Enter  to begin  download. ',
                               hover_delay=500) # Tooltip
     self.entry_repo.grid(row=1, column=1, padx=(20,20), pady=(0,10),
                          ipady=3, sticky='nswe')
@@ -225,43 +234,61 @@ def load_gui(self):
     ###########
 
         # local functions to change button color on hover
-    def on_enter(e):
-       e.widget['background']=logo_orng
+        # Can't use these when Hovertip is used as this <Enter> event overrides
+        # the Hovertip <Enter> event :(
+        # As a workaround, I pulled  tooltip.py from Python and made
+        # DRU_tooltip.py Modified it to pass in 2 optional functions to call
+        # from Hovertip, one for <Enter> one for <Leave>
+    # def on_enter(e):
+    #    e.widget['background']=logo_orng
+    #
+    # def on_leave(e):
+    #    e.widget['background']=btn_bg
 
-    def on_leave(e):
-       e.widget['background']=btn_bg
-       
+    # function passed to hovertip function.  Allows us to change button color
+    def widget_fn(target:Widget, bg_color:str, fg_color:str):
+        #Widget.config(bg=color)
+        target['background'] = bg_color
+        target['foreground'] = fg_color
+
         # Browse Destination Button
     self.btn_brws_dest = tk.Button(self.master, height=1, text='Browse Dest...',
                                    font=("Venture13", 12), bg=btn_bg, fg=btn_fg,
                                    command=lambda:
                                    dr_func.get_folder(self.entry_dest))
-    btn_dest_tip = Hovertip(self.btn_brws_dest,
-                            'Click to select Destination folder.\n'
-                            'Default is "C:\\temp".', hover_delay=500) # Tooltip
-    self.btn_brws_dest.bind('<Enter>', on_enter)
-    self.btn_brws_dest.bind('<Leave>', on_leave)
+
+    Hovertip(self.btn_brws_dest,
+             'Click to select Destination folder.\n'
+             'Default is "C:/temp".', hover_delay=500,
+             # unpack dict as parms by using **
+             widget_fn_in=lambda: widget_fn(self.btn_brws_dest,
+                                            **dict_btn_hvr_in),
+             widget_fn_out=lambda: widget_fn(self.btn_brws_dest,
+                                             **dict_btn_hvr_out))
     self.btn_brws_dest.grid(row=3, column=0, padx=(22,0), ipady=1,
                             pady=(12,0), sticky='we')
 
         # Download Repo Button
     self.btn_dwnld = tk.Button(self.master, height=2, text='Download Repo',
                                font=("Venture13", 13), bg=btn_bg, fg=btn_fg,
-                               command=lambda:
-                               eval(self.download)) # download on button click
-    btn_dwnld_tip = Hovertip(self.btn_dwnld,'Click to download and unzip\n'
-                             'repo into desination folder.',
-                             hover_delay=500) # Tooltip
-    self.btn_dwnld.bind('<Enter>', on_enter)
-    self.btn_dwnld.bind('<Leave>', on_leave)
-    self.btn_dwnld.grid(row=6, column=0, padx=(22,0), pady=(12,20), sticky='we')
+                               command=lambda: eval(self.download))
+    Hovertip(self.btn_dwnld,
+             'Click to download and unzip\n'
+             'repo into destination folder.', hover_delay=500,
+             widget_fn_in=lambda: widget_fn(self.btn_dwnld, **dict_btn_hvr_in),
+             widget_fn_out=lambda: widget_fn(self.btn_dwnld,
+                                             **dict_btn_hvr_out))
+    self.btn_dwnld.grid(row=6, column=0, padx=(22,0), pady=(12,20),
+                        sticky='we')
     
         # Close application Button
     self.btn_close = tk.Button(self.master, width=12, height=2, text='Close',
                                font=("Venture13", 13), bg=btn_bg, fg=btn_fg,
                                command=self.master.destroy)
-    self.btn_close.bind('<Enter>', on_enter)
-    self.btn_close.bind('<Leave>', on_leave)
+    Hovertip(self.btn_close,
+             None, hover_delay=None,
+             widget_fn_in=lambda: widget_fn(self.btn_close, **dict_btn_hvr_in),
+             widget_fn_out=lambda: widget_fn(self.btn_close, **dict_btn_hvr_out))
     self.btn_close.grid(row=6, column=1, padx=(0,19), pady=(12,20), sticky='e')
 
         # Set the Tab order so that download button immediately follows
