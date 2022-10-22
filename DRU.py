@@ -11,9 +11,9 @@ import tkinter as tk
 import configparser
 
 # Import our application modules
-import download_repo_gui as dr_gui
-import download_repo_func as dr_func
-import download_repo_info_share as dr_is # This module allows us to create "global" values for access in other modules in this app
+import DRU_gui
+import DRU_func
+import DRU_info_share as DRU_is # This module allows us to create "global" values for access in other modules in this app
 
 # Frame is the Tkinter frame class that our own class will inherit from
 class ParentWindow(tk.Frame):
@@ -26,7 +26,7 @@ class ParentWindow(tk.Frame):
         self.master = master
 
         # This CenterWindow method will center our app on the user's screen
-        dr_func.center_window(self,760,458) # initial width and height
+        DRU_func.center_window(self,760,458) # initial width and height
         
         self.master.title('D  R  U') # Download Repository Utility = D R U
 
@@ -37,28 +37,29 @@ class ParentWindow(tk.Frame):
 
         # Load in the GUI widgets from a separate module
         # keeping code compartmentalized and clutter free
-        dr_gui.load_gui(self)
+        DRU_gui.load_gui(self)
 
-        ################################
-        # Read the initialization file #
-        ################################
+        ############################################
+        # Read the initialization file (if exists) #
+        ############################################
         
         # Get the saved Zip file destination folder (from last run) and display it in the GUI
         # First create an object
         ini_config = configparser.ConfigParser()
         # Get the name of the .ini file from the base_name in our config module (avoids hardcoding)
-        ini_file = dr_is.base_name + '.ini'  # value is set below in the if __name__ == "__main__":
-        ini_config.read(ini_file)
-        #print(ini_config.sections()) # Debug - to see contents of the ini file
-        dest_folder = ini_config['zipfile.dest']['destination']
-        
-        self.entry_dest.insert(0,dest_folder)  # show the destination folder path in the GUI
+        ini_file = base_name + '.ini'  # value is set below in the if __name__ == "__main__":
+        if os.path.exists(ini_file):        
+            ini_config.read(ini_file)
+            #print(ini_config.sections()) # Debug - to see contents of the ini file
+            dest_folder = ini_config['zipfile.dest']['destination']
+            self.entry_dest.insert(0,dest_folder)  # show the destination folder path in the GUI
 
 
 if __name__ == "__main__":
     # Set base_name in the config module so it can be accessed by other modules like a global var
-    full_script_name = os.path.basename(__file__)  # like "download_repo.py"
-    dr_is.base_name = Path(full_script_name).stem # basename with no stem. like "download_repo"
+    full_script_name = os.path.basename(__file__)  # like "DRU.py"
+    base_name = Path(full_script_name).stem # basename stem like "DRU"
+    DRU_is.base_name = base_name    
 
     root = tk.Tk() # root = main window of the application
     App = ParentWindow(root)

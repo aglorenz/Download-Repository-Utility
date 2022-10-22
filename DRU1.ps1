@@ -67,26 +67,27 @@ Try {
 # # Download the file
 # $webClient.DownloadFile($repositoryZipUrl, $zipFile)
 
-	# $wc = New-Object net.webclient
-	# # $wc.Headers.Add(Net.HttpRequestHeader.Cookie, "security=true") # trying to get around the "Too many automatic redirections were attempted" error
-	# $wc.DownloadFile($repositoryZipUrl, $zipFile)
-#$zipFile="C:/Users/Andy/Documents/_Student Repos/aglorenz-andy-test.zip"
-# Create the HTTP client download request
-$httpClient = New-Object System.Net.Http.HttpClient
-$response = $httpClient.GetAsync($repositoryZipUrl)
-$response.Wait()
- 
-# Create a file stream to pointed to the output file destination
-$outputFileStream = [System.IO.FileStream]::new($zipFile, [System.IO.FileMode]::Create, [System.IO.FileAccess]::Write)
- 
-# Stream the download to the destination file stream
-$downloadTask = $response.Result.Content.CopyToAsync($outputFileStream)
-$downloadTask.Wait()
- 
-# Close the file stream
-$outputFileStream.Close()	
-	
+	$wc = New-Object net.webclient
+	#$wc.Headers.Add(Net.HttpRequestHeader.Cookie, "security=true") # trying to get around the "Too many automatic redirections were attempted" error
+	#Write-Progress -Activity "Downloading $repoName" -Status "Downloaded $zipFile" -PercentComplete 10  # this is lame.  need a better way
+	$wc.DownloadFile($repositoryZipUrl, $zipFile)
 
+
+	# Create the HTTP client download request
+	# $httpClient = New-Object System.Net.Http.HttpClient
+	# $response = $httpClient.GetAsync($repositoryZipUrl)
+	# $response.Wait()
+	 
+	# # Create a file stream pointed to the output file destination
+	# $outputFileStream = [System.IO.FileStream]::new($zipFile, [System.IO.FileMode]::Create, [System.IO.FileAccess]::Write)
+	 
+	# # Stream the download to the destination file stream
+	# $downloadTask = $response.Result.Content.CopyToAsync($outputFileStream)
+	# $downloadTask.Wait()
+	 
+	# # Close the file stream
+	# $outputFileStream.Close()	
+	
 	Write-Progress -Activity "Downloading $repoName" -Status "Downloaded $zipFile" -PercentComplete 100
 }
 #Catch [System.Net.WebException]{
@@ -95,8 +96,7 @@ Catch {
 	echo "StatusDescription: $($_.Exception.Response.StatusDescription)"
 	Write-Host $Error[0].Exception.GetType().FullName # gets name of error so you can catch it
 	Write-Host $_.Exception.Message
-	Write-Host "Ensure URL contains valid Username, Repository, and Branch."
-	Write-Host "Ensure URL is public."
+	Write-Host "Ensure Repo is public and URL contains valid Username, Repository, and Branch."
 	echo $_.Exception.Message
 	exit 0  # Stop execution of the script with exit command.
 			# Can't exit with 1 to signal an error because none of the messages above are returned in stdout or stderr 
@@ -106,18 +106,26 @@ Catch {
 }
 echo "Download completed." ""
 
-$zipDest =  "$destination/$user-$repoName"
+# $zipDest =  "$destination/$user-$repoName" # 
+# # remove any trailing periods from the path
+# while ($zipDest.EndsWith('.')) {$zipDest = $zipDest.TrimEnd('.')}
+# echo "Destination Folder: $zipDest"
+
+$userRepo =  "$destination/$user-$repoName" # 
+# remove any trailing periods from the path
+while ($userRepo.EndsWith('.')) {$userRepo = $userRepo.TrimEnd('.')}
 echo "Destination Folder: $zipDest"
 
-#Create the destination folder if it doesn't exist
-if (Get-Item -Path $zipDest -ErrorAction Ignore) {
-	echo "" "Destination Folder Already Exists: $zipDest"
-}
-else {
-	echo "" "Destination Folder Does Not Exist."
-	echo "Creating Folder: $zipDest"
-	New-Item $zipDest -ItemType Directory
-}
+
+# #Create the destination folder if it doesn't exist ### may not need this section if the new rename below works
+# if (Get-Item -Path $zipDest -ErrorAction Ignore) {
+	# echo "" "Destination Folder Already Exists: $zipDest"
+# }
+# else {
+	# echo "" "Destination Folder Does Not Exist."
+	# echo "Creating Folder: $zipDest"
+	# New-Item $zipDest -ItemType Directory
+# }
 
 #Extract Zip File
 echo "" "Unziping File:  $zipFile"
@@ -126,7 +134,13 @@ Try {
 	#Expand-Archive -Path $zipFile -Force -DestinationPath $destination
 	#Expand-Archive -Path $zipFile -Force 
 	# using 7zip because it's faster and doesn't choke on archive subfolders with trailing spaces
-	& ${env:ProgramFiles}\7-Zip\7z.exe x $zipFile "-o$($zipDest)" -y
+
+	# Rename the top level folder in the zip file.
+	#& ${env:ProgramFiles}\7-Zip\7z.exe rn  alejlo2594-JavaScript-Projects.zip JavaScript-Projects-main Andy
+	& ${env:ProgramFiles}\7-Zip\7z.exe rn  $zipFile $repoName $userRepo
+	& ${env:ProgramFiles}\7-Zip\7z.exe x $zipFile "-o$($destination)" -y # change $zipDest to $destination
+
+#	& ${env:ProgramFiles}\7-Zip\7z.exe x $zipFile "-o$($zipDest)" -y # change $zipDest to $destination
 }
 Catch {
 	echo "A problem occurred unzipping the file."
@@ -162,7 +176,8 @@ echo "Zip file deleted." ""
 # If for some reason there are are two repositories unzipped into the destination (perhaps you downloaded
 # the master branch previously and now the main branch), then File explorer will open both in separate windows.  
 echo "Opening Top Level Archive Folder"
-ii $destination\$user-$repoName\$repoName*
+#ii $destination\$user-$repoName\$repoName*
+ii $destination\$user-$repoName\*    # current
 
 
 #[String]$destination = Split-Path -Parent $PSCommandPath

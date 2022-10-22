@@ -30,7 +30,7 @@ from DRU_tooltip import Hovertip  # Tooltips!
 from PIL import Image, ImageTk
 
 # Import our other modules
-import download_repo_func as dr_func
+import DRU_func
 
 import pyglet
 # The following works around the bug when pyglet imports a font and the
@@ -40,7 +40,7 @@ from pyglet.libs.win32 import constants
 constants.COINIT_MULTITHREADED = 0x2  # 0x2 = COINIT_APARTMENTTHREADED
 
 # Add custom computer looking font
-pyglet.font.add_file('Venture13.ttf')
+pyglet.font.add_file('./fonts/Venture13.ttf')
 
 Widget = Union[tk.Widget, ttk.Widget] #
 
@@ -87,9 +87,9 @@ def load_gui(self):
     # Even though the image had transparency, it wasn't transparent when
     # used in the app. Had to manually set the background color to the same
     # as that of the app. 
-    img_logo=Image.open('DRU-Logo.png')
+    img_logo=Image.open('./images/DRU-Logo.png')
     # this one has transparency needed for the favicon
-    img_icon=Image.open('DRU-Favicon.png')
+    img_icon=Image.open('./images/DRU-Favicon.png')
 
     # Resize the image in the given (width, height)
     logo=img_logo.resize((100,100))
@@ -154,7 +154,7 @@ def load_gui(self):
     self.rb_main = tk.Radiobutton(self.br_frame, anchor="w", font="Verdana 10",
                                   text="Main/Master", bg=lt_grey,
                                   command=lambda:
-                                  dr_func.clr_branch(self.entry_branch),
+                                  DRU_func.clr_branch(self.entry_branch),
                                   variable=self.rb_var, value="master",
                                   width=13)
     rb_main_tip = Hovertip(self.rb_main,
@@ -190,12 +190,12 @@ def load_gui(self):
     self.entry_branch = tk.Entry(self.br_frame, font="Verdana 12",
                         validate="focusout", state="disabled",
                         validatecommand=lambda:
-                        dr_func.left_justify(self.entry_branch)) # left justify
+                        DRU_func.left_justify(self.entry_branch)) # left justify
     branch_tip = Hovertip(self.entry_branch,'Enter repo branch name',
                           hover_delay=500) # Tooltip
     self.entry_branch.grid(row=0, column=2)
 
-    ###############    
+    ###############
     # Entry Boxes #
     ###############
 
@@ -204,8 +204,8 @@ def load_gui(self):
         # evalulate it when either download button pressed or when the user
         # hits the Enter key after pasting in the repo path.
         # New way to call w/o the parm clutter.  Self has access to everything.
-    self.download = '''dr_func.download(self)'''  
-##    self.download = '''dr_func.download(self, self.entry_repo,
+    self.download = '''DRU_func.download(self)'''  
+##    self.download = '''DRU_func.download(self, self.entry_repo,
 ##                       self.entry_dest.get(), self.rb_var.get(),
 ##                       self.entry_branch.get(), self.txt_out)'''
         # Source URL
@@ -213,7 +213,7 @@ def load_gui(self):
         # Makes it easier to verify they got the whole URL
     self.entry_repo = tk.Entry(self.master, font="Verdana 12",
                                validate="focusout", validatecommand=lambda:
-                               dr_func.left_justify(self.entry_repo))
+                               DRU_func.left_justify(self.entry_repo))
     entry_repo_tip = Hovertip(self.entry_repo,
                               'Paste   repository   link,   then\n'
                               'press  Enter  to begin  download. ',
@@ -233,29 +233,16 @@ def load_gui(self):
     # Buttons #
     ###########
 
-        # local functions to change button color on hover
-        # Can't use these when Hovertip is used as this <Enter> event overrides
-        # the Hovertip <Enter> event :(
-        # As a workaround, I pulled  tooltip.py from Python and made
-        # DRU_tooltip.py Modified it to pass in 2 optional functions to call
-        # from Hovertip, one for <Enter> one for <Leave>
-    # def on_enter(e):
-    #    e.widget['background']=logo_orng
-    #
-    # def on_leave(e):
-    #    e.widget['background']=btn_bg
-
-    # function passed to hovertip function.  Allows us to change button color
+    '''fn() passed to hovertip class.  Enables us to change widget colors'''
     def widget_fn(target:Widget, bg_color:str, fg_color:str):
         #Widget.config(bg=color)
-        target['background'] = bg_color
-        target['foreground'] = fg_color
+        target.config(bg=bg_color, fg=fg_color)
 
         # Browse Destination Button
     self.btn_brws_dest = tk.Button(self.master, height=1, text='Browse Dest...',
                                    font=("Venture13", 12), bg=btn_bg, fg=btn_fg,
                                    command=lambda:
-                                   dr_func.get_folder(self.entry_dest))
+                                   DRU_func.get_folder(self.entry_dest))
 
     Hovertip(self.btn_brws_dest,
              'Click to select Destination folder.\n'
@@ -319,7 +306,3 @@ def load_gui(self):
 
 if __name__ == "__main__":
     pass
-    
-
-    
-    

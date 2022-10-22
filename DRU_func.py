@@ -30,9 +30,9 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
 
-import download_repo_gui as dr_gui
-import download_repo as dr
-import download_repo_info_share as dr_is # to share info between modules
+import DRU_gui
+#import DRU
+import DRU_info_share as DRU_is # to share info between modules
 
 def center_window(self, w, h):
     '''Center the application window on the user's screen
@@ -220,7 +220,7 @@ def validate_dest(unzip_dest, text_out):
 
 def download(self):
     # get the values needed by this method
-    base_name = dr_is.base_name # get base name from our info share module
+    base_name = DRU_is.base_name # get base name from our info share module
     ini_file = base_name + '.ini'
 
     entry_repo = self.entry_repo
@@ -231,13 +231,6 @@ def download(self):
 
     text_out = self.txt_out 
     unzip_dest = self.entry_dest.get() # get the dest folder entered by user
-
-    # save the dest folder path to an .ini file for next App start up
-    ini_config = configparser.ConfigParser()
-    ini_config['zipfile.dest'] = {}
-    ini_config['zipfile.dest']['destination'] = unzip_dest
-    with open('download_repo.ini', 'w') as configfile:
-              ini_config.write(configfile)
 
     # prepare the text box for output
     text_out.config(state='normal')
@@ -252,7 +245,7 @@ def download(self):
     try:
         remote_url = entry_repo.get()
         parsed_url = remote_url.split("/")
-        # assuming url in format like https://github.com/Alisak1/JavaScript-Projects/...
+        # assuming url in format like https://github.com/username/JavaScript-Projects/...
         user_name = parsed_url[3] 
         repo_name = parsed_url[4]
         # remove all leading and trailing white space, then all trailing '.git's
@@ -290,6 +283,16 @@ def download(self):
     # Get the destination folder.  Default to C:\temp if empty or path doesn't exist
     # Create folder if needed.
     unzip_dest = validate_dest(unzip_dest, text_out)
+    # save updated dest to entry box
+    self.entry_dest.delete(0,'end')
+    self.entry_dest.insert(0,unzip_dest) 
+
+    # save the dest folder path to an .ini file for next App start up
+    ini_config = configparser.ConfigParser()
+    ini_config['zipfile.dest'] = {}
+    ini_config['zipfile.dest']['destination'] = unzip_dest
+    with open(ini_file, 'w') as configfile:
+              ini_config.write(configfile)
 
 ##    text_out.insert('end',"Destination: ",'bold', f"\"{unzip_dest}\"" +
 ##                    dest_created, 'info_bold')
@@ -311,7 +314,6 @@ def download(self):
                   f" | Out-File -Encoding ASCII {base_name}.log")
     print(ps_command)
     result = run(ps_command)
-    print("hello Andyyy")
     print(type(result))
     print(result.stdout)  # how do I capture the return code?
     text_out.insert('end', f"{result.stdout}", 'err_bold')
