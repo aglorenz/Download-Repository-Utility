@@ -34,10 +34,10 @@
     <img src="images/DRU-Logo_transparent.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Download Repository Utility</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A utility to quickly download a GitHub repository, unzip it, and open the folder in file explorer.
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
