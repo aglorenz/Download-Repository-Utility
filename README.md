@@ -34,7 +34,7 @@
     <img src="images/DRU-Logo_transparent.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Download Repository Utility</h3>
+  <h1 align="center">Download Repository Utility</h1>
 
   <p align="center">
     A utility to quickly download a GitHub repository, unzip it, and open the top-level folder in file explorer.
