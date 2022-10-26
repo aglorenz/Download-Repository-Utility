@@ -34,10 +34,10 @@
     <img src="images/DRU-Logo_transparent.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Download Repository Utility</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A utility to quickly download a GitHub repository, unzip it, and open the top-level folder in file explorer.
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -247,7 +247,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [stars-url]: https://github.com/aglorenz/download-repository-utility/stargazers
 [issues-shield]: https://img.shields.io/github/issues/aglorenz/download-repository-utility.svg?style=for-the-badge
 [issues-url]: https://github.com/aglorenz/download-repository-utility/issues
-[license-shield]: https://img.shields.io/github/license/aglorenz/download-repository-utility.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/aglorenz/Download-Repository-Utility.svg?style=for-the-badge
 [license-url]: https://github.com/aglorenz/Download-Repository-Utility/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/andrew-lorenz-565208133
