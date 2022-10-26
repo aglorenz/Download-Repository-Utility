@@ -29,13 +29,14 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div>
+<div align="center">
   <a href="https://github.com/aglorenz/Download-Repo">
     <img src="images/DRU-Logo_transparent.png" alt="Logo" width=110" height="110">
   </a>
 
   <h1>Download Repository Utility</h1>
 
+                                                                                 
   <p>
     A utility to quickly download a GitHub repository, unzip it, and open the top-level folder in file explorer.
     <br />
