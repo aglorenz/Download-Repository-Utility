@@ -37,7 +37,7 @@
   <h3 align="center">Download Repository Utility</h3>
 
   <p align="center">
-    A utility to quickly download a GitHub repository, unzip it, and open the folder in file explorer.
+    A utility to quickly download a GitHub repository, unzip it, and open the top-level folder in file explorer.
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
