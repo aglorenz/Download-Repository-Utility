@@ -40,7 +40,7 @@
   <p>
     A utility to quickly download a GitHub repository, unzip it, and open the top-level folder in file explorer.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/aglorenz/Download-Repository-Utility"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/aglorenz/Download-Repository-Utility">View Demo</a>
