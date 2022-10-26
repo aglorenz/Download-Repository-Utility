@@ -29,14 +29,14 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div>
   <a href="https://github.com/aglorenz/Download-Repo">
     <img src="images/DRU-Logo_transparent.png" alt="Logo" width=110" height="110">
   </a>
 
-  <h1 align="center">Download Repository Utility</h1>
+  <h1>Download Repository Utility</h1>
 
-  <p align="center">
+  <p>
     A utility to quickly download a GitHub repository, unzip it, and open the top-level folder in file explorer.
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
