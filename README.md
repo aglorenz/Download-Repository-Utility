@@ -85,6 +85,7 @@
 
 ![DRU Screenshot](https://user-images.githubusercontent.com/27447653/198150984-a841f3f6-fcb3-4beb-8f78-99d9a03e15fa.png)
 
+As an instructors at a software development boot camp, we can download up to 70 GitHub repositories a day.  The process to download a repository and open the assignment folder is monotonous - taking up to 20 mouse clicks.  It's easy to lose track of your progress.  Since I'm a fan of efficiency, I was inspired to create Download Repository Utility (DRU).  Once up and runnning, DRU only takes only 4 or 5 mouse clicks to download and open the assignment folder.
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
 Here's why:
