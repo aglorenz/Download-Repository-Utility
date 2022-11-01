@@ -85,7 +85,7 @@
 
 ![DRU Screenshot](https://user-images.githubusercontent.com/27447653/198150984-a841f3f6-fcb3-4beb-8f78-99d9a03e15fa.png)
 
-As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes about 20 mouse clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place in this process and have to repeat steps.  As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU).  Once up and runnning, DRU only takes 4 or 5 mouse clicks to download and open the student's assignment folder for instructor review.
+As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes about 20 mouse clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place in this process and have to repeat steps.  As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU).  Once up and runnning, DRU only takes 2 or 3 mouse clicks to download a repo and open the student's assignment folder to begin code review. Just past the URL and press Enter!
 
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
