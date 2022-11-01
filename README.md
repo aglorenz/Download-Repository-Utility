@@ -115,9 +115,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
-* [![Django][Djangoproject.com]][Django-url]
-* [![Tkinter][tkdocs.com]][Tkinter-url]
-* [![Python][python.org]][Python-url]
+* [![Django][Django-shield]][Django-url]
+* [![Tkinter][Tkdocs-shield]][Tkinter-url]
+* [![Python][Python-shield]][Python-url]
+* [![Powershell][Powershell-shield]][Powershell-url]
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -275,9 +277,11 @@ Use this space to list resources you find helpful and would like to give credit 
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com
-[Djangoproject.com]: https://img.shields.io/badge/django-092d1f?style=for-the-badge&logo=django&logoColor=white
+[Django-shield]: https://img.shields.io/badge/django-092d1f?style=for-the-badge&logo=django&logoColor=white
 [Django-url]: https://djangoproject.com
-[Tkdocs.com]: https://img.shields.io/badge/Tkinter-3772a4?style=for-the-badge&logo=python&logoColor=ffd13f
+[Tkdocs-shield]: https://img.shields.io/badge/Tkinter-3772a4?style=for-the-badge&logo=python&logoColor=ffd13f
 [Tkinter-url]: https://tkdocs.com
-[Python.org]: https://img.shields.io/badge/Python-3674a8?style=for-the-badge&logo=python&logoColor=ffd13f
+[Python-shield]: https://img.shields.io/badge/Python-3674a8?style=for-the-badge&logo=python&logoColor=ffd13f
 [Python-url]: https://python.org
+[Powershell-shield]: https://img.shields.io/badge/Powershell-03438e?style=for-the-badge&logo=powershell&logoColor=a4d2e8
+[Powershell-url]: https://learn.microsoft.com/en-us/powershell/
