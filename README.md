@@ -87,7 +87,7 @@
 
 As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes up to 20 mouse/key clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place and have to repeat steps or start over :expressionless:. As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU). Once it's up and runnning, DRU only takes 2 or 3 clicks to download a repo, open the student folder, and begin code review. Just paste the URL and press Enter :sunglasses:.  Almost everything is automated including opening the repository folder and deleting the zip file.
 
-### Handy Features:
+### Features:
 - Fast download (using Powershell 5.1 and Web Client) and fast reliable unzip (using 7-zip).
 - Repository folder is auto-opened in Windows File Explorer so you can quickly get to work.
 - Zip file is deleted after unzip.
@@ -105,19 +105,8 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-* [![Django][Django-shield]][Django-url]
-* [![Tkinter][Tkdocs-shield]][Tkinter-url]
 * [![Python][Python-shield]][Python-url]
+* [![Tkinter][Tkdocs-shield]][Tkinter-url]
 * [![Powershell][Powershell-shield]][Powershell-url]
 
 
