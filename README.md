@@ -85,7 +85,7 @@
 
 ![DRU Screenshot](https://user-images.githubusercontent.com/27447653/198150984-a841f3f6-fcb3-4beb-8f78-99d9a03e15fa.png)
 
-As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes up to 20 mouse/key clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place and have to repeat steps or start over :expressionless:. As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU).  Once it's up and runnning, DRU only takes 2 or 3 mouse/key clicks to download a repo, open the student folder, and begin code review. Just paste the URL and press Enter.  Almost everything is automated including opening the repository folder and deleting the zip file.
+As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes up to 20 mouse/key clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place and have to repeat steps or start over :expressionless:. As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU). Once it's up and runnning, DRU only takes 2 or 3 mouse/key clicks to download a repo, open the student folder, and begin code review. Just paste the URL and press Enter :sunglasses:.  Almost everything is automated including opening the repository folder and deleting the zip file.
 
 ### Handy Features:
 - Fast download (using Powershell 5.1 and Web Client) and fast reliable unzip (using 7-zip).
