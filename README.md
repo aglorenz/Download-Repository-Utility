@@ -85,8 +85,7 @@
 
 ![DRU Screenshot](https://user-images.githubusercontent.com/27447653/198150984-a841f3f6-fcb3-4beb-8f78-99d9a03e15fa.png)
 
-As an instructors at a software development boot camp, we can download up to 70 GitHub repositories a day.  The process to download a repository and open the assignment folder is monotonous - taking up to 20 mouse clicks.  It's easy to lose track of your progress.  Since I'm a fan of efficiency, I was inspired to create Download Repository Utility (DRU).  Once up and runnning, DRU only takes only 4 or 5 mouse clicks to download and open the assignment folder.
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes about 20 mouse clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place in this process and have to repeat steps.  As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU).  Once up and runnning, DRU only takes 4 or 5 mouse clicks to download and open the student's assignment folder for instructor review.
 
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
