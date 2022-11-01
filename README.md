@@ -87,6 +87,7 @@
 
 As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes up to 20 mouse/key clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place and have to repeat steps or start over.  As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU).  Once it's up and runnning, DRU only takes 2 or 3 mouse/key clicks to download a repo, open the student folder, and begin code review. Just paste the URL and press Enter.  Almost everything is automated including opening the repository folder and deleting the zip file.
 
+
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
