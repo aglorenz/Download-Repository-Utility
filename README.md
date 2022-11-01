@@ -91,7 +91,7 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 - Fast download (using Powershell 5.1 and Web Client) and fast reliable unzip (using 7-zip).
 - Repository folder is auto-opened in Windows File Explorer so you can quickly get to work.
 - Zip file is deleted after unzip.
-- Delayed tooltips when mouse is hovered over features.
+- Delayed tooltips when mouse is hovered over GUI features.
 - Remembers specified download destination for next run.
 - Unzipped repository folder is prefixed with the username to make it unique. This prevents unzipping into another student's folder that has the same repo name.
 - Can specify branch to download if repo contains multiple branches.
