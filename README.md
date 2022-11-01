@@ -92,7 +92,7 @@ Handy Features:
 - Repository folder is auto-opened in Windows File Explorer so you can quickly get to work.
 - Zip file is deleted after unzip.
 - Delayed tooltip popups when mouse is hovered over features.
-- Remembers specified download destination for next run or utility startup.
+- Remembers specified download destination for next run.
 - Unzipped repository folder is prefixed with the username to make it unique. This prevents unzipping into another student's folder that has the same repo name.
 - Can specify branch to download if repo contains multiple branches.
 - Important information and errors are displayed on screen, more details are written to DRU.log
