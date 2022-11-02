@@ -122,16 +122,17 @@ To get a local copy up and running follow these steps.
 ### Prerequisites
 
 DRU was developed and tested with the following:
-- Python 3.9.5
-- PowerShell 5.1 (comes installed with Windows 10 and 11)
-- Pyglet python library 1.5.27
-- Pillow python library 9.3.0
+* Python 3.9.5
+* PowerShell 5.1 (comes installed with Windows 10 and 11)
+* Python libraries
+    * Pyglet 1.5.27
+    * Pillow  9.3.0
 
-To install Python, visit:
-* https://www.python.org/downloads
+To install Python:
+* [Python download](https://www.python.org/downloads)
 
-To install the required python libraries:
-* Pillow and pyglet. After installing Python, from the Windows command line, execute:
+To install the Python libraries:
+* After installing Python, open the Windows command line and execute:
   ```sh
   pip install pyglet
   pip install Pillow
