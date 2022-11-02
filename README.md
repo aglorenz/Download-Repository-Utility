@@ -131,7 +131,7 @@ To install Python, visit:
 * https://www.python.org/downloads
 
 To install the required python libraries:
-* Pillow and pyglet, from the command line after installing Python, execute:
+* Pillow and pyglet. After installing Python, from the Windows command line, execute:
   ```sh
   pip install pyglet
   pip install Pillow
