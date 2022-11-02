@@ -110,7 +110,6 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 * [![Powershell][Powershell-shield]][Powershell-url]
 
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -118,15 +117,24 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+DRU was tested with the following:
+- Python 3.9.5
+- PowerShell 5.1 (comes installed with Windows 10 and 11)
+- Pyglet python library 1.5.27
+- Pillow python library 9.3.0
+
+To install Python, visit:
+* https://www.python.org/downloads
+
+To install the required python libraries:
+* Pillow and pyglet
   ```sh
-  npm install npm@latest -g
+  pip install pyglet
+  pip install Pillow
   ```
 
 ### Installation
