@@ -129,10 +129,10 @@ DRU was developed and tested with the following:
     * Pillow  9.3.0
 
 To install Python:
-* [Python download](https://www.python.org/downloads)
+* [Python download](https://www.python.org/downloads) (latest version is OK)
 
 To install the Python libraries:
-* After installing Python, open the Windows command line and execute:
+* After installing Python, open the Windows command line and execute the following (latest versions are OK):
   ```sh
   pip install pyglet
   pip install Pillow
