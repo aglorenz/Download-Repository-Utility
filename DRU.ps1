@@ -64,6 +64,8 @@ Try {
 	# even though no luck getting a progress bar to work.
 	#Invoke-RestMethod -Uri $repoZipURL -OutFile $zipFile -ErrorAction stop 
 	#Invoke-WebRequest -Uri $repoZipURL -OutFile $zipFile -UseBasicParsing
+	$wc = New-Object net.webclient
+	$wc.DownloadFile($repoZipURL, $zipFile)
 
 # $webClient = [System.Net.WebClient]::new()
 # # Download the file
