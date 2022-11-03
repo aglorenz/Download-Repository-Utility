@@ -59,6 +59,7 @@ echo ""
 # download the zip 
 echo "Downloading: $repositoryZipUrl"
 Try {
+	# Faster to use this when downloading larger repositories.
 	$wc = New-Object net.webclient
 	$wc.DownloadFile($repositoryZipUrl, $zipFile)
 }
