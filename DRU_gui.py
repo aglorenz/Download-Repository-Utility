@@ -135,7 +135,7 @@ def load_gui(self):
         # Execution Output
     self.lbl_output = tk.Label(self.master, height=1, bg=background,
                                fg=lbl_color, font=("Venture13", 13),
-                               text='Program Output:')
+                               text='Output:')
     self.lbl_output.grid(row=4, column=0, padx=(20,0), pady=(20,0), sticky='w')
 
     ######################
