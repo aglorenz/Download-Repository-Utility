@@ -95,7 +95,7 @@ Catch {
 			# Can't exit with 1 to signal an error because none of the messages 
 			# above are returned in stdout or stderr. 
 			# We use stdout to capture specific messages written with 
-			# Write-Host. We use echo to write to the log file for more details.
+			# Write-Host. We use echo for writing details to the log file.
 	#return $_.Exception.Message  # no can do.  Python can't deal with it.
 }
 echo "Download completed." ""
