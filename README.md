@@ -101,8 +101,6 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
 * [![Python][Python-shield]][Python-url]
@@ -113,8 +111,6 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- GETTING STARTED -->
 ## Getting Started
 
 To get a local copy up and running follow these steps:
@@ -156,6 +152,7 @@ To install the Python libraries:
 2. Open DRU.py with [IDLE](https://docs.python.org/3/library/idle.html).
 3. Click Run ➡️ Run Module to open DRU.
 4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press enter on your keyboard to begin the repo download and extraction.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
