@@ -151,7 +151,7 @@ To install the Python libraries:
 1. Navigate to the main folder of the repository, "Download-Repository-Utility".
 2. Open DRU.py with [IDLE](https://docs.python.org/3/library/idle.html).
 3. Click Run ➡️ Run Module to open DRU.
-4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press enter on your keyboard to begin the repo download and extraction.
+4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press **enter** on your keyboard to begin the repo download and extraction.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
@@ -165,12 +165,16 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 ### "Main/Master" radio button:
 * If the repository contains either a Main or Master branch, select **Main/Master**.  
 * If the repo contains both branches and content from master is needed, select **Main/Master**
-* If the repository contains both branches and content is needed from main, then select **Other** and enter **main** in the input field.  
-### "Browse Dest" input field and button:
-                                                                   
+* If the repository contains both branches and content is needed from main, then select **Other** and enter **main** in the input field. 
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### "Other" radio button
+* Select this if there is a special branch that is needed and enter the branch name in the input field.
 
+### "Browse Dest" input field and button:                                                                   
+* If you would like a custom destination for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
+
+### "Dpownload Repo" button:                                                                   
+* Click this button as an alternative to pressing *enter* after entering the repo URL.
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
