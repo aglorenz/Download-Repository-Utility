@@ -142,7 +142,6 @@ To install the Python libraries:
 
 ### Installation
 
-
 1. Clone the repo
    ```sh
    git clone https://github.com/aglorenz/Download-Repository-Utility.git
@@ -162,6 +161,7 @@ To install the Python libraries:
 ## Usage
 
 ### "Enter Repo URL" input field:
+Paste a repository URL into this field.  The URL must contain the *https://* prefix as well as a valid *GitHub username* and *repository* name 
 ### "Main/Master" radio button:
 *
 *
