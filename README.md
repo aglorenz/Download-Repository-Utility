@@ -161,14 +161,14 @@ To install the Python libraries:
 ## Usage
 
 ### "Enter Repo URL" input field:
-Paste a repository URL into this field.  The URL must contain the **https://** prefix and at least a valid **GitHub username** and **repository** name.
-  ```sh
+Paste a repository URL into this field.  The URL must contain the **https://** prefix and at least a valid GitHub **username** and **repository** name.
+  ```
   Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
   ```
 ### "Main/Master" radio button:
-*
-*
-*
+* If the repository contains either a Main or Master branch, select **Main/Master**.  
+* If the repo contains both branches and content from master is needed, select **Main/Master**
+* If the repository contains both branches and content is needed from main, then select **Other** and enter **main** in the input field.  
 ### "Browse Dest" input field and button:
                                                                    
 
