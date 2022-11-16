@@ -134,7 +134,7 @@ To install Python:
 To install the Python libraries:
 * After installing Python, open the Windows command line and execute the following:
   ```sh
-  pip install pyglet==1.5.27  (pyglet 2.0 will not load our chosen external font)
+  pip install pyglet==1.5.27  (pyglet 2.0 will not load our cool external computer font 🙁)
   pip install Pillow==9.3.0
   ```
 
@@ -147,6 +147,7 @@ To install the Python libraries:
    ```sh
    git clone https://github.com/aglorenz/Download-Repository-Utility.git
    ```
+2. Ensure the prerequisites above are met.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
