@@ -161,6 +161,14 @@ To install the Python libraries:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+### "Enter Repo URL" input field:
+### "Main/Master" radio button:
+*
+*
+*
+### "Browse Dest" input field and button:
+                                                                   
+
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
