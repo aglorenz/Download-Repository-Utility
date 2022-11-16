@@ -134,7 +134,7 @@ To install Python:
 To install the Python libraries:
 * After installing Python, open the Windows command line and execute the following (latest versions are OK):
   ```sh
-  pip install pyglet==1.5.27
+  pip install pyglet==1.5.27  (pyglet 2.0 will not load our chosen external font)
   pip install Pillow==9.3.0
   ```
 
