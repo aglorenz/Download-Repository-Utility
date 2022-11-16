@@ -147,11 +147,16 @@ To install the Python libraries:
    ```sh
    git clone https://github.com/aglorenz/Download-Repository-Utility.git
    ```
-2. Ensure the prerequisites above are met.
+2. Ensure the prerequisites above have been met.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Quick Start DRU
 
+1. Navigate to the main folder of the repository, "Download-Repository-Utility".
+2. Open DRU.py with [IDLE](https://docs.python.org/3/library/idle.html).
+3. Click Run ➡️ Run Module to open DRU.
+4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press enter on your keyboard to begin the repo download and extraction.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
