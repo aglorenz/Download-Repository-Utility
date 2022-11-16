@@ -126,7 +126,7 @@ DRU was developed and tested with the following:
 * PowerShell 5.1 (comes installed with Windows 10 and 11)
 * Python libraries
     * Pyglet 1.5.27
-    * Pillow  9.3.0
+    * Pillow 9.3.0
 
 To install Python:
 * [Python download](https://www.python.org/downloads) (latest version is OK)
@@ -134,8 +134,8 @@ To install Python:
 To install the Python libraries:
 * After installing Python, open the Windows command line and execute the following (latest versions are OK):
   ```sh
-  pip install pyglet
-  pip install Pillow
+  pip install pyglet==1.5.27
+  pip install Pillow==9.3.0
   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
