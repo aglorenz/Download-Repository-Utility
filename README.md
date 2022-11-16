@@ -161,10 +161,10 @@ To install the Python libraries:
 ## Usage
 
 ### "Enter Repo URL" input field:
-Paste a repository URL into this field.  The URL must contain the **https://** prefix as well as a valid **GitHub username** and **repository** name.
-'''sh
-Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
-'''
+Paste a repository URL into this field.  The URL must contain the **https://** prefix and at least a valid **GitHub username** and **repository** name.
+  ```sh
+  Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
+  ```
 ### "Main/Master" radio button:
 *
 *
