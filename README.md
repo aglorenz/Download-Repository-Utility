@@ -168,14 +168,14 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 * If the repository contains both branches and content is needed from main, then select **Other** and enter **main** in the input field. 
 
 ### "Other" radio button
-* Select this if there is a special branch that is needed and enter the branch name in the input field.
+* Select this if content from an alternative branch is needed. Enter this branch name in the input field.
 
 ### "Browse Dest" input field and button:                                                                   
-* If you would like a custom destination for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
+* If a custom destination is desired for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
+* The destination path used here will be saved in DRU.ini and populated in this field the next time DRU is opened.
 
-### "Dpownload Repo" button:                                                                   
-* Click this button as an alternative to pressing *enter* after entering the repo URL.
-_For more examples, please refer to the [Documentation](https://example.com)_
+### "Download Repo" button:                                                                   
+* Click this button as an alternative to pressing **enter** after entering the repo URL.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
