@@ -96,7 +96,7 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 - Unzipped repository folder is prefixed with the username to make it unique. This prevents unzipping into another student's folder that has the same repo name.
 - Can specify branch to download if repo contains multiple branches.
 - Important information and errors are displayed on screen, more details are written to DRU.log.
-- DRU screen size is flexible.  Just click and drag borders to adjust the footprint.
+- Screen size is flexible.  Just click and drag borders to adjust the footprint.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
