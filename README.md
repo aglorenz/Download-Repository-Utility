@@ -78,8 +78,9 @@
         <li><a href="#other-radio-button">"Other" radio button</a></li>
         <li><a href="#browse-dest-input-field-and-button">"Browse Dest" input field and button</a></li>
         <li><a href="#download-repo-button">"Download Repo" button</a></li>
-        <li><a href="#other-radio-button">"Other" radio button</a></li>
-        <li><a href="#other-radio-button">"Other" radio button</a></li>
+        <li><a href="#output-text-box">"Output" text box</a></li>
+        <li><a href="#drulog">DRU.log</a></li>
+        <li><a href="#housecleaning">Housecleaning</a></li>
       </ul>
     <li><a href="#limitations-and-exceptions">Limitations and Exceptions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -197,7 +198,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 ### "Download Repo" button                                                                   
 * To start the download, click this button as an alternative to pressing **enter** after entering the repo URL.
 
-### "Output"
+### "Output" text box
 * Informative output from DRU is displayed here including:
   * Most recently used repo URL
   * User, Repository Name, Branch Name
@@ -209,7 +210,9 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 * This file contains behind-the-scenes details from the last download to help with debugging.
 
 ### Housecleaning
-* User will need to manually close the File Explorer Window after each download.
+* User will need to: 
+  * Manually close the File Explorer Window after they are done with it.
+  * Manually delete the unzipped folder when they are done with it (zip files are auto-deleted).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -218,8 +221,9 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 <!-- Limitations and Exceptions -->
 ## Limitations and Exceptions
                                        
-* DRU cannot download a repository that ends with a period.  These must be downloaded manually from GitHub.
-* DRU cannot display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples onlinethat can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
+* DRU cannot: 
+  * Download a repository that ends with a period.  These must be downloaded manually from GitHub.
+  * Display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples online that can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
