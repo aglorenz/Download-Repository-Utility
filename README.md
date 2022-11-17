@@ -209,13 +209,9 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Modify Tkinter ToolTips library to accept a custom function. This allowed button color change on mouse hover follwed by a delayed tooltip.
+- [x] Modified Tkinter ToolTips library to accept a custom function. This allowed button color change on mouse hover followed by a delayed tooltip.
 - [ ] Package DRU as an executable.
 - [ ] Better looking delayed tooltips with customizable color and font and border.
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
