@@ -72,7 +72,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#limitations-exceptions">Limitations and Exceptions</a></li>
+    <li><a href="#limitations-and-exceptions">Limitations and Exceptions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -113,7 +113,7 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+<!-- Getting Started -->
 ## Getting Started
 
 To get a local copy up and running follow these steps:
@@ -159,7 +159,9 @@ To install the Python libraries:
 4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press **enter** on your keyboard to begin the repo download and extraction.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
+
+
+<!-- USAGE -->
 ## Usage
 
 ### "Enter Repo URL" input field:
@@ -203,13 +205,16 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- Limitations-Exceptions -->
-## Limitations-Exceptions
+
+<!-- Limitations and Exceptions -->
+## Limitations and Exceptions
                                        
-* DRU cannot download a repository that ends with a period.  These must be downloaded manually from GitHub
+* DRU cannot download a repository that ends with a period.  These must be downloaded manually from GitHub.
 * DRU cannot display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples onlinethat can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- ROADMAP -->
 ## Roadmap
