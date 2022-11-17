@@ -73,6 +73,12 @@
     </li>
     <li><a href="#usage">Usage</a></li>
       <ul>
+        <li><a href="#enter-repo-url-input-field">"Enter Repo URL" input field</a></li>
+        <li><a href="#mainmaster-radio-button">"Main/Master" radio button</a></li>
+        <li><a href="#other-radio-button">"Other" radio button</a></li>
+        <li><a href="#browse-dest-input-field-and-button">"Browse Dest" input field and button</a></li>
+        <li><a href="#download-repo-button">"Download Repo" button</a></li>
+        <li><a href="#other-radio-button">"Other" radio button</a></li>
         <li><a href="#other-radio-button">"Other" radio button</a></li>
       </ul>
     <li><a href="#limitations-and-exceptions">Limitations and Exceptions</a></li>
