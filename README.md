@@ -203,7 +203,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 <!-- Limitation/Exceptions -->
 ## Limitation/Exceptions
 * DRU cannot download a repository that ends with a period.  These must be downloaded manually from GitHub
-* DRU cannot display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are exanples online of code that can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
+* DRU cannot display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples onlinethat can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
 ### limitation 2
 
 <!-- ROADMAP -->
@@ -211,7 +211,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 
 - [x] Modified Tkinter ToolTips library to accept a custom function. This allowed button color change on mouse hover followed by a delayed tooltip.
 - [ ] Package DRU as an executable.
-- [ ] Better looking delayed tooltips with customizable color and font and border.
+- [ ] Better looking delayed tooltips with customizable color, font, and border.
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
