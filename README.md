@@ -164,6 +164,10 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
   ```
   Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
   ```
+* For the fastest workflow, press the **enter** key after pasting the URL to begin the download process.  
+* After the repository is downloaded and unzipped, the folder name is prefixed with the GitHub user's name to differentiate it from other repositories with the same name.
+* Once the repository is unzipped, the folder is auto-opened in Windows File Explorer
+
 ### "Main/Master" radio button:
 * If the repo contains either a Main or Master branch (but not both) select **Main/Master**.  
 * If the repo contains both branches and content from Master is needed, select **Main/Master**.
@@ -185,10 +189,19 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
   * User, Repository Name, Branch Name
   * Error messages
 * Output text box can be resized by dragging the borders of the DRU application GUI.
-* Output text box can be scrolled by hovering the mouse and scrolling the wheel.
+* Output content can be scrolled by hovering the mouse and scrolling the wheel.
+
+### DRU.log:
+* This file contains more details from the most recent download.
+
+### Housecleaning:
+* User will need to manually close the File Explorer Window after each download.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+<!-- Limitation/Exceptions -->
+## Limitation/Exceptions
 
 
 <!-- ROADMAP -->
@@ -196,7 +209,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 
 - [x] Add Changelog
 - [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
+- [ ] 
 - [ ] Add "components" document to easily copy & paste sections of the readme
 - [ ] Multi-language Support
     - [ ] Chinese
