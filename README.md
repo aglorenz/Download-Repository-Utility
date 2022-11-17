@@ -167,7 +167,7 @@ To install the Python libraries:
 <!-- USAGE -->
 ## Usage
 
-### "Enter Repo URL" input field:
+### "Enter Repo URL" input field
 Paste a repository URL into this field.  The URL must contain the **https://** prefix and at least a valid GitHub **username** and **repository** name.
   ```
   Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
@@ -176,7 +176,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 * After the repository is downloaded and unzipped, the folder name is prefixed with the GitHub user's name to differentiate it from other repositories with the same name.
 * Once the repository is unzipped, the folder is auto-opened in Windows File Explorer
 
-### "Main/Master" radio button:
+### "Main/Master" radio button
 * If the repo contains either a Main or Master branch (but not both) select **Main/Master**.  
 * If the repo contains both branches and content from Master is needed, select **Main/Master**.
 * If the repo contains both branches and content from Main is needed, select **Other** and enter **main** in the input field. 
@@ -184,14 +184,14 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 ### "Other" radio button
 * Select this if content from an alternative branch (which could be **main**) is needed. Enter this branch name in the input field.
 
-### "Browse Dest" input field and button:                                                                   
+### "Browse Dest" input field and button                                                                  
 * If a custom destination is desired for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
 * The path entered will be saved in DRU.ini and repopulated the next time DRU is opened.
 
-### "Download Repo" button:                                                                   
+### "Download Repo" button                                                                   
 * To start the download, click this button as an alternative to pressing **enter** after entering the repo URL.
 
-### "Output":
+### "Output"
 * Informative output from DRU is displayed here including:
   * Most recently used repo URL
   * User, Repository Name, Branch Name
@@ -199,10 +199,10 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 * Output text box can be resized by dragging the borders of the DRU application GUI.
 * Output content can be scrolled by hovering the mouse and scrolling the wheel.
 
-### DRU.log:
+### DRU.log
 * This file contains behind-the-scenes details from the last download to help with debugging.
 
-### Housecleaning:
+### Housecleaning
 * User will need to manually close the File Explorer Window after each download.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
