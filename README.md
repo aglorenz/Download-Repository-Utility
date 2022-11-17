@@ -72,6 +72,9 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+      <ul>
+        <li><a href="#other-radio-button">"Other" radio button</a></li>
+      </ul>
     <li><a href="#limitations-and-exceptions">Limitations and Exceptions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
