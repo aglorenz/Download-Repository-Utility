@@ -192,7 +192,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 * Output content can be scrolled by hovering the mouse and scrolling the wheel.
 
 ### DRU.log:
-* This file contains more details from the most recent download.
+* This file contains behind-the-scenes details from the last download to help with debugging.
 
 ### Housecleaning:
 * User will need to manually close the File Explorer Window after each download.
@@ -202,14 +202,16 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 
 <!-- Limitation/Exceptions -->
 ## Limitation/Exceptions
-
+* DRU cannot download a repository that ends with a period.  These must be downloaded manually from GitHub
+* DRU cannot display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are exanples online of code that can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
+### limitation 2
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] 
+- [x] Modify Tkinter ToolTips library to accept a custom function. This allowed button color change on mouse hover follwed by a delayed tooltip.
+- [ ] Package DRU as an executable.
+- [ ] Better looking delayed tooltips with customizable color and font and border.
 - [ ] Add "components" document to easily copy & paste sections of the readme
 - [ ] Multi-language Support
     - [ ] Chinese
