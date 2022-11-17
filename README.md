@@ -163,12 +163,12 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
   Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
   ```
 ### "Main/Master" radio button:
-* If the repository contains either a Main or Master branch, select **Main/Master**.  
-* If the repo contains both branches and content from master is needed, select **Main/Master**
-* If the repository contains both branches and content is needed from main, then select **Other** and enter **main** in the input field. 
+* If the repo contains either a Main or Master branch (but not both) select **Main/Master**.  
+* If the repo contains both branches and content from Master is needed, select **Main/Master**.
+* If the repo contains both branches and content from Main is needed, select **Other** and enter **main** in the input field. 
 
 ### "Other" radio button
-* Select this if content from an alternative branch is needed. Enter this branch name in the input field.
+* Select this if content from an alternative branch (which could include **main**) is needed. Enter this branch name in the input field.
 
 ### "Browse Dest" input field and button:                                                                   
 * If a custom destination is desired for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
