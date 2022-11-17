@@ -170,7 +170,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 * If the repo contains both branches and content from Main is needed, select **Other** and enter **main** in the input field. 
 
 ### "Other" radio button
-* Select this if content from an alternative branch (which could include **main**) is needed. Enter this branch name in the input field.
+* Select this if content from an alternative branch (which could be **main**) is needed. Enter this branch name in the input field.
 
 ### "Browse Dest" input field and button:                                                                   
 * If a custom destination is desired for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
@@ -178,6 +178,14 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 
 ### "Download Repo" button:                                                                   
 * To start the download, click this button as an alternative to pressing **enter** after entering the repo URL.
+
+### "Output":
+* Informative output from DRU is displayed here including:
+  * Most recently used repo URL
+  * User, Repository Name, Branch Name
+  * Error messages
+* Output text box can be resized by dragging the borders of the DRU application GUI.
+* Output text box can be scrolled by hovering the mouse and scrolling the wheel.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
