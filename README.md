@@ -70,7 +70,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#limitations/exceptions">Limitations/Exceptions</a></li>
+    <li><a href="#limitations-exceptions">Limitations/Exceptions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -201,8 +201,9 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- Limitations/Exceptions -->
-## Limitations/Exceptions
+<!-- Limitations-Exceptions -->
+## Limitations-Exceptions
+                                       
 * DRU cannot download a repository that ends with a period.  These must be downloaded manually from GitHub
 * DRU cannot display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples onlinethat can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
 
