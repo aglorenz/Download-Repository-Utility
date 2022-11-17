@@ -118,6 +118,7 @@ To get a local copy up and running follow these steps:
 ### Prerequisites
 
 DRU was developed and tested with the following:
+* Windows 10 or 11
 * Python 3.9.5
 * PowerShell 5.1 (comes installed with Windows 10 and 11)
 * Python libraries
@@ -128,6 +129,7 @@ To install Python:
 * [Python download](https://www.python.org/downloads) (latest version is OK)
 
 To install the Python libraries:
+(Use a python virtual environment if your main python environment has different versions of below libraries)
 * After installing Python, open the Windows command line and execute the following:
   ```sh
   pip install pyglet==1.5.27  (pyglet 2.0 will not load our cool external computer font 🙁)
