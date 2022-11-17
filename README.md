@@ -59,6 +59,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#features">Features</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -67,10 +68,11 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#quick-start">Quick Start</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#limitations-exceptions">Limitations/Exceptions</a></li>
+    <li><a href="#limitations-exceptions">Limitations and Exceptions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -88,7 +90,7 @@
 
 As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes up to 20 mouse/key clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place and have to repeat steps or start over :expressionless:. As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU). Once it's up and runnning, DRU only takes 2 or 3 clicks to download a repo, open the student folder, and begin code review. Just paste the URL and press Enter :sunglasses:.  Almost everything is automated including opening the repository folder and deleting the zip file.
 
-### Features:
+### Features
 - Fast download (using Powershell 5.1 and Web Client) and fast reliable unzip (using 7-zip).
 - Repository folder is auto-opened in Windows File Explorer so you can quickly get to work.
 - Zip file is deleted after unzip.
@@ -149,7 +151,7 @@ To install the Python libraries:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Quick Start DRU
+### Quick Start
 
 1. Navigate to the main folder of the repository, "Download-Repository-Utility".
 2. Open DRU.py with [IDLE](https://docs.python.org/3/library/idle.html).
