@@ -73,12 +73,12 @@
     </li>
     <li><a href="#usage">Usage</a></li>
       <ul>
-        <li><a href="#enter-repo-url-input-field">"Enter Repo URL" input field</a></li>
-        <li><a href="#mainmaster-radio-button">"Main/Master" radio button</a></li>
-        <li><a href="#other-radio-button">"Other" radio button</a></li>
-        <li><a href="#browse-dest-input-field-and-button">"Browse Dest" input field and button</a></li>
-        <li><a href="#download-repo-button">"Download Repo" button</a></li>
-        <li><a href="#output-text-box">"Output" text box</a></li>
+        <li><a href="#enter-repo-url-input-field">"Enter Repo URL"Input Field</a></li>
+        <li><a href="#mainmaster-radio-button">"Main/Master" Radio Button</a></li>
+        <li><a href="#other-radio-button">"Other" Radio Button</a></li>
+        <li><a href="#browse-dest-input-field-and-button">"Browse Dest" Input Field and Button</a></li>
+        <li><a href="#download-repo-button">"Download Repo" Button</a></li>
+        <li><a href="#output-text-box">"Output" Text Box</a></li>
         <li><a href="#drulog">DRU.log</a></li>
         <li><a href="#housecleaning">Housecleaning</a></li>
       </ul>
@@ -174,7 +174,7 @@ To install the Python libraries:
 <!-- USAGE -->
 ## Usage
 
-### "Enter Repo URL" input field
+### "Enter Repo URL" Input Field
 Paste a repository URL into this field.  The URL must contain the **https://** prefix and at least a valid GitHub **username** and **repository** name.
   ```
   Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
@@ -183,22 +183,22 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
 * After the repository is downloaded and unzipped, the folder name is prefixed with the GitHub user's name to differentiate it from other repositories with the same name.
 * Once the repository is unzipped, the folder is auto-opened in Windows File Explorer
 
-### "Main/Master" radio button
+### "Main/Master" Radio Button
 * If the repo contains either a Main or Master branch (but not both) select **Main/Master**.  
 * If the repo contains both branches and content from Master is needed, select **Main/Master**.
 * If the repo contains both branches and content from Main is needed, select **Other** and enter **main** in the input field. 
 
-### "Other" radio button
+### "Other" Radio Button
 * Select this if content from an alternative branch (which could be **main**) is needed. Enter this branch name in the input field.
 
-### "Browse Dest" input field and button                                                                  
+### "Browse Dest" Input Field and Button                                                                  
 * If a custom destination is desired for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
 * The path entered will be saved in DRU.ini and repopulated the next time DRU is opened.
 
-### "Download Repo" button                                                                   
+### "Download Repo" Button                                                                   
 * To start the download, click this button as an alternative to pressing **enter** after entering the repo URL.
 
-### "Output" text box
+### "Output" Text Box
 * Informative output from DRU is displayed here including:
   * Most recently used repo URL
   * User, Repository Name, Branch Name
