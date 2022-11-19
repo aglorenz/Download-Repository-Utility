@@ -102,7 +102,7 @@ As instructors at a software development boot camp, we download between 70 and 1
 
 ### Features
 - Fast download (using Powershell 5.1 and Web Client) and fast reliable unzip (using 7-zip).
-- Repository folder is auto-opened in Windows File Explorer so you can quickly get to work.
+- Repository folder is auto-opened in Windows File Explorer so you can get to work quickly.
 - Zip file is deleted after unzip.
 - Delayed tooltips when mouse is hovered over GUI features.
 - Remembers specified download destination for next run.
