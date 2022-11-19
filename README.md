@@ -43,8 +43,8 @@
     <a href="https://github.com/aglorenz/Download-Repository-Utility"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/aglorenz/Download-Repository-Utility">View Demo</a>
-    ·
+<!--    <a href="https://github.com/aglorenz/Download-Repository-Utility">View Demo</a>
+    · -->
     <a href="https://github.com/aglorenz/Download-Repository-Utility/issues">Report Bug</a>
     ·
     <a href="https://github.com/aglorenz/Download-Repository-Utility/issues">Request Feature</a>
