@@ -285,9 +285,9 @@ Project Link : [https://github.com/aglorenz/Download-Repository-Utility](https:/
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [An Awesome README template](https://github.com/othneildrew/Best-README-Template)
 * [Alex Sanderson](https://github.com/Vexelior) : For pointing me toward the more efficient Web Connect.
 * [Wesley Morford](https://github.com/WMorf) : Alpha Testing.
+* [An Awesome README template](https://github.com/othneildrew/Best-README-Template)
 * [Choose an Open Source License](https://choosealicense.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
