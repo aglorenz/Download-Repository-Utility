@@ -182,7 +182,7 @@ To install the Python libraries:
 3. Click Apply
 4. Click Change Icon... ➡️ Browse
     1. Browse to the Images subfolder of the repository and select DRU-Favicon-Thick.ico ➡️ Open ➡️ OK ➡️ OK
-5. Drag the shortcut to the taskbar.
+5. Drag the shortcut to the taskbar
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
