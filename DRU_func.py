@@ -54,7 +54,7 @@ def center_window(self, w, h):
     # get User's screen width and height
     screen_width = self.master.winfo_screenwidth() # get user's screen width
     screen_height = self.master.winfo_screenheight() # and height
-    # calculate x and y coordinates to paint the app centered on the user's screen
+    # calculate x and y coords to paint the app centered on the user's screen
     x = int((screen_width/2) - (w/2))
     y = int((screen_height/2) - (h/2))
     self.master.geometry('{}x{}+{}+{}'.format(w, h, x, y))
@@ -70,7 +70,7 @@ def get_folder(entry_box):
 
     Returns
     -------
-        None    
+    None    
     '''
 
     entry_box.delete(0,'end')
@@ -135,7 +135,7 @@ def clr_branch(entry_box):
 
     Returns
     -------
-
+    None    
     '''
     
     entry_box.delete(0,'end')
@@ -171,7 +171,7 @@ def print_file(file_path):
 
     Returns
     -------
-    
+    None
     '''
 
     f = open(file_path, 'r')
@@ -197,8 +197,8 @@ def validate_dest(unzip_dest, text_out):
     dest_created = ""
     # If the unzip destination doesn't exist, set to the default, C:/temp
     if not os.path.exists(unzip_dest):
-        text_out.insert('end', "Warning: Destination Path Not Found: ", 'err_bold',
-                        f"'{unzip_dest}'\n", 'info_bold',
+        text_out.insert('end', "Warning: Destination Path Not Found: ",
+                        'err_bold', f"'{unzip_dest}'\n", 'info_bold',
                         "Using Default Path Instead.\n", 'err_bold')
         unzip_dest = 'C:/temp'
         dest_created = " <--Default path"
@@ -209,16 +209,29 @@ def validate_dest(unzip_dest, text_out):
                 dest_created += " (Auto-created)\n"
             except OSError as e:
                 text_out.insert('end', f"Fatal: {str(e)}\n", 'err_bold')
-                text_out.insert('end', f"Cannot create folder: '{unzip_dest}'\n",
+                text_out.insert('end',
+                                f"Cannot create folder: '{unzip_dest}'\n",
                                 'err')
                 text_out.config(state='disabled')
-                sys.exit(1)
+                return
     # Message to user
     text_out.insert('end',"Destination: ",'bold', f"'{unzip_dest}'",'info_bold',
                     f"{dest_created}\n")                
     return unzip_dest
 
+
 def download(self):
+    '''
+    Download the GitHub repository.
+    
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    '''
     # get the values needed by this method
     base_name = DRU_is.base_name # get base name from our info share module
     ini_file = base_name + '.ini'
@@ -249,7 +262,8 @@ def download(self):
         user_name = parsed_url[3] 
         repo_name = parsed_url[4]
         # remove all leading and trailing white space, then all trailing '.git's
-        # -- GitHub repo names can't end with ".git"  Try creating one on GitHub, you'll see   
+        # -- GitHub repo names can't end with ".git"
+        # Try creating one on GitHub as a test.
         repo_name = trim_trailing(repo_name.strip(), '.git')
         print(f"Trimmed repo = '{repo_name}'")
 ##        if len(repo_name) == 0:
@@ -258,14 +272,23 @@ def download(self):
 
     except IndexError as e:
         text_out.insert('end', f"Fatal: {str(e)}\n", 'err_bold')
-        text_out.insert('end', "Missing or bad formatting in Repo URL.\n", 'err')
+        text_out.insert('end', "Missing or bad formatting in Repo URL.\n",
+                        'err')
         text_out.insert('end',
-                        "Ensure URL contains valid Username and Repository like so:\n", 'err')
+                        "Ensure URL contains valid Username and Repository",
+                        'err')
         text_out.insert('end',
-                        "https://github.com/JoeSchmo/JavaScript-Projects/...", 'err_bold')
+                        "like so:\n", 'err')
+        text_out.insert('end',
+                        "https://github.com/JoeSchmo/JavaScript-Projects/...",
+                        'err_bold')
         text_out.config(state='disabled')
-        sys.exit(1)
-##        raise Exception("woops")  # this will end the program when not caught with except
+        return
+
+        # Using sys.exit causes DRU to exit when run from shortcut in task bar.
+        # sys.exit(1)  
+        # raise exception will end the program when not caught with except
+        # raise Exception("woops")  
 
     # Get the branch name            
     if (btn_branch == "other"):
@@ -280,8 +303,8 @@ def download(self):
                           " | Repo: ",'bold', f"'{repo_name}'",'info_bold',
                           " | Branch: ",'bold', f"'{branch}'\n",'info_bold' )
 
-    # Get the destination folder.  Default to C:\temp if empty or path doesn't exist
-    # Create folder if needed.
+    # Get the destination folder.  Default to C:\temp if empty or path doesn't
+    # exist. Create folder if needed.
     unzip_dest = validate_dest(unzip_dest, text_out)
     # save updated dest to entry box
     self.entry_dest.delete(0,'end')
@@ -303,13 +326,15 @@ def download(self):
     print(f"Username={user_name}, RepoName={repo_name}, Branch={branch}")
     
     # Note: using "-Encoding ASCII" because Powershell 5.1 doesn't support
-    # UTF-8 without BOM. When usig UTF-8, the beginning of the output looks funky
-    # However, using ASCII eliminates any special characters like ñ and results in
-    # a ? instead.  Small risk considering what we are using this for.
+    # UTF-8 without BOM. When usig UTF-8, the beginning of the output looks
+    # funky
+    # However, using ASCII eliminates any special characters like ñ and results
+    # in a ? instead.  Small risk considering what we are using this for.
     # Could possibly start using Powershell Core, which allows UTF-8 (no BOM)
     # but testing will need to be done.
     # https://4sysops.com/wiki/differences-between-powershell-versions/
-    ps_command = (f"./{base_name}.ps1 -repoName '{repo_name}' -user '{user_name}'"
+    ps_command = (f"./{base_name}.ps1 -repoName '{repo_name}'"
+                  f" -user '{user_name}'"
                   f" -branch '{branch}' -destination '{unzip_dest}'"
                   f" | Out-File -Encoding ASCII {base_name}.log")
     print(ps_command)
@@ -319,12 +344,10 @@ def download(self):
     text_out.insert('end', f"{result.stdout}", 'err_bold')
     text_out.config(state='disabled')
 
-
-
-##        # If I manually set return code to 1 in powershell script to show an error,
-          # then result never gets assigned and I can't examine anything else returned :(
-##        print(f"An error occured: {e}")  # this fails with
-          # "local variable 'result' referenced before assignment"
+# If I manually set return code to 1 in powershell script to show an error,
+# then result never gets assigned and I can't examine anything else returned :(
+#        print(f"An error occured: {e}")  # this fails with
+# "local variable 'result' referenced before assignment"
 ##        
 ##    if result.returncode != 0:
 ##        print(f"We have an error!  yay!!")
@@ -333,9 +356,3 @@ def download(self):
 ##        print("Download executed successfully!")
 ##        #print_file(f"{base_name}.log")
 
-
-
-
-
-
-    
