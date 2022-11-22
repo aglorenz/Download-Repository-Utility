@@ -168,6 +168,20 @@ To install the Python libraries:
 3. Click Run ➡️ Run Module to open DRU.
 4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press **enter** on your keyboard to begin the repo download and extraction.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+                                       
+#### Generate Your Own Shortcut for the Taskbar
+
+1. Right click on DRU.py ➡️ Properties
+2. In the Target Field:
+    1. Enter the path to your python.exe file. Example: C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe
+    2. Change python.exe to pythonw.exe
+    3. Add the path to DRU.py 
+    4. Example: C:\Users\Andy\AppData\Local\Programs\Python\Python39\pythonw.exe C:\Users\Andy\Source\Repos\Download-Repository-Utility\DRU.py
+2. In the Start In field, enter the path to DRU.py
+    1. C:\Users\Andy\Source\Repos\Download-Repository-Utility
+3. Click Apply ➡️ OK
+4. Click Change Icon
+
 
 
 
