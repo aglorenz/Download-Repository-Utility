@@ -179,8 +179,8 @@ To install the Python libraries:
     4. Example: C:\Users\Andy\AppData\Local\Programs\Python\Python39\pythonw.exe C:\Users\Andy\Source\Repos\Download-Repository-Utility\DRU.py
 2. In the Start In field, enter the path to DRU.py
     1. Example: C:\Users\Andy\Source\Repos\Download-Repository-Utility
-3. Click Apply ➡️ OK
-4. Click Change Icon ➡️ Browse
+3. Click Apply
+4. Click Change Icon... ➡️ Browse
     1. Browse to the Images subfolder of the repository and select DRU-Favicon-Thick.ico ➡️ Open ➡️ OK ➡️ OK
 5. Drag the shortcut to the taskbar
 
