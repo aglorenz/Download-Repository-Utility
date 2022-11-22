@@ -43,8 +43,8 @@
     <a href="https://github.com/aglorenz/Download-Repository-Utility"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/aglorenz/Download-Repository-Utility">View Demo</a>
-    ·
+<!--    <a href="https://github.com/aglorenz/Download-Repository-Utility">View Demo</a>
+    · -->
     <a href="https://github.com/aglorenz/Download-Repository-Utility/issues">Report Bug</a>
     ·
     <a href="https://github.com/aglorenz/Download-Repository-Utility/issues">Request Feature</a>
@@ -59,6 +59,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#features">Features</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -67,9 +68,21 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#quick-start">Quick Start</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+      <ul>
+        <li><a href="#enter-repo-url-input-field">"Enter Repo URL"Input Field</a></li>
+        <li><a href="#mainmaster-radio-button">"Main/Master" Radio Button</a></li>
+        <li><a href="#other-radio-button">"Other" Radio Button</a></li>
+        <li><a href="#browse-dest-input-field-and-button">"Browse Dest" Input Field and Button</a></li>
+        <li><a href="#download-repo-button">"Download Repo" Button</a></li>
+        <li><a href="#output-text-box">"Output" Text Box</a></li>
+        <li><a href="#drulog">DRU.log</a></li>
+        <li><a href="#housecleaning">Housecleaning</a></li>
+      </ul>
+    <li><a href="#limitations-and-exceptions">Limitations and Exceptions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -85,23 +98,21 @@
 
 ![DRU Screenshot](https://user-images.githubusercontent.com/27447653/198150984-a841f3f6-fcb3-4beb-8f78-99d9a03e15fa.png)
 
-As instructors at a software development boot camp, we download up to 70 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes up to 20 mouse/key clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place and have to repeat steps or start over :expressionless:. As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU). Once it's up and runnning, DRU only takes 2 or 3 clicks to download a repo, open the student folder, and begin code review. Just paste the URL and press Enter :sunglasses:.  Almost everything is automated including opening the repository folder and deleting the zip file.
+As instructors at a software development boot camp, we download between 70 and 100 GitHub student repositories a day.  The process to download a repository and open the assignment folder is monotonous and takes up to 20 mouse/key clicks.  In a fast paced environment with frequent interruptions, it's easy to lose your place and have to repeat steps or start over :expressionless:. As a fan of efficient work flow, I was inspired to create Download Repository Utility (DRU). Once it's up and runnning, DRU only takes 2 or 3 clicks to download a repo, open the student folder, and begin code review. Just paste the URL and press Enter :sunglasses:.  Almost everything is automated including opening the repository folder and deleting the zip file.
 
-### Features:
+### Features
 - Fast download (using Powershell 5.1 and Web Client) and fast reliable unzip (using 7-zip).
-- Repository folder is auto-opened in Windows File Explorer so you can quickly get to work.
+- Repository folder is auto-opened in Windows File Explorer so you can get to work quickly.
 - Zip file is deleted after unzip.
 - Delayed tooltips when mouse is hovered over GUI features.
 - Remembers specified download destination for next run.
 - Unzipped repository folder is prefixed with the username to make it unique. This prevents unzipping into another student's folder that has the same repo name.
 - Can specify branch to download if repo contains multiple branches.
 - Important information and errors are displayed on screen, more details are written to DRU.log.
-- Tkinter screen size is flexible.  Just click and drag borders to minimize the footprint.
+- Screen size is flexible.  Just click and drag borders to adjust the footprint.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -112,9 +123,7 @@ As instructors at a software development boot camp, we download up to 70 GitHub 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
+<!-- Getting Started -->
 ## Getting Started
 
 To get a local copy up and running follow these steps:
@@ -122,42 +131,99 @@ To get a local copy up and running follow these steps:
 ### Prerequisites
 
 DRU was developed and tested with the following:
+* Windows 10 or 11
 * Python 3.9.5
 * PowerShell 5.1 (comes installed with Windows 10 and 11)
 * Python libraries
     * Pyglet 1.5.27
-    * Pillow  9.3.0
+    * Pillow 9.3.0
 
 To install Python:
 * [Python download](https://www.python.org/downloads) (latest version is OK)
 
 To install the Python libraries:
-* After installing Python, open the Windows command line and execute the following (latest versions are OK):
+(Use a python virtual environment if your main python environment has different versions of below libraries)
+* After installing Python, open the Windows command line and execute the following:
   ```sh
-  pip install pyglet
-  pip install Pillow
+  pip install pyglet==1.5.27  (pyglet 2.0 will not load our cool external computer font 🙁)
+  pip install Pillow==9.3.0
   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Installation
 
-
 1. Clone the repo
    ```sh
    git clone https://github.com/aglorenz/Download-Repository-Utility.git
    ```
+2. Ensure the prerequisites above have been met.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Quick Start
+
+1. Navigate to the main folder of the repository, "Download-Repository-Utility".
+2. Open DRU.py with [IDLE](https://docs.python.org/3/library/idle.html).
+3. Click Run ➡️ Run Module to open DRU.
+4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press **enter** on your keyboard to begin the repo download and extraction.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE -->
+## Usage
+
+### "Enter Repo URL" Input Field
+Paste a repository URL into this field.  The URL must contain the **https://** prefix and at least a valid GitHub **username** and **repository** name.
+  ```
+  Ex:  https://github.com/JoeSchmo/JavaScript-Projects/...
+  ```
+* For the fastest workflow, press the **enter** key after pasting the URL to begin the download process.  
+* After the repository is downloaded and unzipped, the folder name is prefixed with the GitHub user's name to differentiate it from other repositories with the same name.
+* Once the repository is unzipped, the folder is auto-opened in Windows File Explorer
+
+### "Main/Master" Radio Button
+* If the repo contains either a Main or Master branch (but not both) select **Main/Master**.  
+* If the repo contains both branches and content from Master is needed, select **Main/Master**.
+* If the repo contains both branches and content from Main is needed, select **Other** and enter **main** in the input field. 
+
+### "Other" Radio Button
+* Select this if content from an alternative branch (which could be **main**) is needed. Enter this branch name in the input field.
+
+### "Browse Dest" Input Field and Button                                                                  
+* If a custom destination is desired for the downloaded repositories, enter the path in the input field or press the button to open a browse dialog to select a folder.  If this field is left blank, DRU will use "C:/temp".  If this folder doesn't exit, it will be auto-created.
+* The path entered will be saved in DRU.ini and repopulated the next time DRU is opened.
+
+### "Download Repo" Button                                                                   
+* To start the download, click this button as an alternative to pressing **enter** after entering the repo URL.
+
+### "Output" Text Box
+* Informative output from DRU is displayed here including:
+  * Most recently used repo URL
+  * User, Repository Name, Branch Name
+  * Error messages
+* Output text box can be resized by dragging the borders of the DRU application GUI.
+* Output content can be scrolled by hovering the mouse and scrolling the wheel.
+
+### DRU.log
+* This file contains behind-the-scenes details from the last download to help with debugging.
+
+### Housecleaning
+* User will need to: 
+  * Manually close the File Explorer Window after they are done with it.
+  * Manually delete the unzipped folder when they are done with it (zip files are auto-deleted).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+<!-- Limitations and Exceptions -->
+## Limitations and Exceptions
+                                       
+* DRU cannot: 
+  * Download a repository that ends with a period.  These must be downloaded manually from GitHub. It's a limitation of Web Connect.
+  * Display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples online that can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -166,15 +232,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] Modified Tkinter ToolTips library to accept a custom function. This allowed button color change on mouse hover followed by a delayed tooltip.
+- [ ] Package DRU as an executable.
+- [ ] Better looking delayed tooltips with customizable color, font, and border.
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/aglorenz/Download-Repository-Utility/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -210,9 +272,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Andrew Lorenz : [LinkedIn](https://www.linkedin.com/in/andrew-lorenz-565208133/)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link : [https://github.com/aglorenz/Download-Repository-Utility](https://github.com/aglorenz/Download-Repository-Utility)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -223,14 +285,10 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
+* [Alex Sanderson](https://github.com/Vexelior) : For pointing me toward the more efficient Web Connect.
+* [Wesley Morford](https://github.com/WMorf) : Alpha Testing.
+* [An Awesome README template](https://github.com/othneildrew/Best-README-Template)
 * [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
