@@ -4,12 +4,13 @@
 # Author: Sandro Pereira https://blog.sandro-pereira.com/2020/09/01  #
 #          /how-to-download-a-github-repository-using-powershell/    #
 # Modified:                                                          #
-# 8/4/2022 Andrew Lorenz Tweaked for our needs   					 #
+# 8/4/2022 Andrew Lorenz Expanded for our needs   					 #
 #                        Prerequisites: Powershell v5.1				 #
 #                                                                    #
 ######################################################################
 using assembly System.Net.Http
 using namespace System.Net.Http
+
 param( 
    [Parameter(Mandatory=$True)] 
    [string] $repoName, 
@@ -23,7 +24,16 @@ param(
    [Parameter(Mandatory=$False)] 
    [string] $destination = "c:\temp" 
 ) 
-$baseName = (Get-Item $PSCommandPath).BaseName # get name of script being executed
+
+function date_time()
+{
+	# like 202210201936  yyyymmddhhmmss in 24 hr format
+	return (Get-Date -UFormat "%Y%m%d%H%M%S").tostring() 
+}
+
+# get name of script being executed
+$baseName = (Get-Item $PSCommandPath).BaseName 
+
 # write parms to log file
 Get-Date
 echo ""
@@ -33,114 +43,104 @@ echo "User Name: $($user)"
 echo "Repository Branch: $($branch)"
 echo "Destination Folder: $($destination)"
 
-
-# example
-# $repoName = 'JavaScript-Projects'
-# $user = 'jefflicano82'
-# $branch = 'main'
-# $destination = 'C:\Users\Andy\Documents\_Student Repos'
-
-# Force to create a zip file 
-$zipFile = "$destination/$user-$repoName.zip" # prepend user name to differentiate other student's repos
+# prefix with user name to differentiate student's repos
+$zipFile = "$destination/$user-$repoName.zip" 
 echo "Desintation Zip File: $zipFile"
 
-#New-Item $zipFile -ItemType File -Force  # | Out-Null # supress output with Out-Null
-
-# this is the same way as when you click on the green download button (supposedly)
-$repositoryZipUrl = "https://github.com/$user/$repoName/archive/refs/heads/$branch.zip"
-#$repositoryZipUrl = "https://github.com/$user/$repoName/archive/$branch.zip"
-echo "Repository Zip File URL: $repositoryZipUrl"
+# Create the download URL
+$repoZipURL = 
+	"https://github.com/$user/$repoName/archive/refs/heads/$branch.zip"
+echo "Repository Zip File URL: $repoZipURL"
 echo ""
 
-#$repositoryZipUrl = "https://github.com/sandroasp/Microsoft-Integration-and-Azure-Stencils-Pack-for-Visio/archive/master.zip"
-
-# using the API instead
-#$repositoryZipUrl = "https://api.github.com/repos/$user/$repoName/zipball/$branch"  
+# Example of when using the API instead
+# $repoZipURL = 
+	# "https://api.github.com/repos/$user/$repoName/zipball/$branch"  
 
 # download the zip 
-echo "Downloading: $repositoryZipUrl"
+echo "Downloading: $repoZipURL"
 Try {
-	#Invoke-RestMethod -Uri $repositoryZipUrl -OutFile $zipFile -ErrorAction stop 
-	#Invoke-WebRequest -Uri $repositoryZipUrl -OutFile $zipFile -UseBasicParsing
+	# Sadly, these methods are too slow. We use Web Client instead 
+	# even though no luck getting a progress bar to work.
+	#Invoke-RestMethod -Uri $repoZipURL -OutFile $zipFile -ErrorAction stop 
+	#Invoke-WebRequest -Uri $repoZipURL -OutFile $zipFile -UseBasicParsing
 
 # $webClient = [System.Net.WebClient]::new()
 # # Download the file
-# $webClient.DownloadFile($repositoryZipUrl, $zipFile)
+# $webClient.DownloadFile($repoZipURL, $zipFile)
 
 	$wc = New-Object net.webclient
-	#$wc.Headers.Add(Net.HttpRequestHeader.Cookie, "security=true") # trying to get around the "Too many automatic redirections were attempted" error
-	#Write-Progress -Activity "Downloading $repoName" -Status "Downloaded $zipFile" -PercentComplete 10  # this is lame.  need a better way
-	$wc.DownloadFile($repositoryZipUrl, $zipFile)
-
-
-	# Create the HTTP client download request
-	# $httpClient = New-Object System.Net.Http.HttpClient
-	# $response = $httpClient.GetAsync($repositoryZipUrl)
-	# $response.Wait()
-	 
-	# # Create a file stream pointed to the output file destination
-	# $outputFileStream = [System.IO.FileStream]::new($zipFile, [System.IO.FileMode]::Create, [System.IO.FileAccess]::Write)
-	 
-	# # Stream the download to the destination file stream
-	# $downloadTask = $response.Result.Content.CopyToAsync($outputFileStream)
-	# $downloadTask.Wait()
-	 
-	# # Close the file stream
-	# $outputFileStream.Close()	
+	# trying to get around the "Too many automatic redirections were 
+	# attempted" error
+	#$wc.Headers.Add(Net.HttpRequestHeader.Cookie, "security=true") 
+	# This method is very fast, but no progress bar
+	$wc.DownloadFile($repoZipURL, $zipFile)  
 	
-	Write-Progress -Activity "Downloading $repoName" -Status "Downloaded $zipFile" -PercentComplete 100
+	# Progress bar showing 100% complete
+	Write-Progress -Activity "Downloading $repoName" `
+		-Status "Downloaded $zipFile" -PercentComplete 100
 }
 #Catch [System.Net.WebException]{
 Catch {
 	echo "StatusCode: $($_.Exception.Response.StatusCode.value__)"
 	echo "StatusDescription: $($_.Exception.Response.StatusDescription)"
-	Write-Host $Error[0].Exception.GetType().FullName # gets name of error so you can catch it
+	Write-Host $Error[0].Exception.GetType().FullName 
 	Write-Host $_.Exception.Message
-	Write-Host "Ensure Repo is public and URL contains valid Username, Repository, and Branch."
+	Write-Host "Ensure Repo is public and URL contains valid Username, " `
+			   "Repository, and Branch."
 	echo $_.Exception.Message
 	exit 0  # Stop execution of the script with exit command.
-			# Can't exit with 1 to signal an error because none of the messages above are returned in stdout or stderr 
-			# stderr returns too much. I only want a little bit of text returned.  So I use stdout instead.
-			# which captures messages written with Write-Host.  Using echo writes to the log file for more details.
-	#return $_.Exception.Message 
+			# Can't exit with 1 to signal an error because none of the messages 
+			# above are returned in stdout or stderr. 
+			# We use stdout to capture specific messages written with 
+			# Write-Host. We use echo to write to the log file for more details.
+	#return $_.Exception.Message  # no can do.  Python can't deal with it.
 }
 echo "Download completed." ""
 
-# $zipDest =  "$destination/$user-$repoName" # 
+# $zipDest =  "$destination/$user-$repoName" 
 # # remove any trailing periods from the path
 # while ($zipDest.EndsWith('.')) {$zipDest = $zipDest.TrimEnd('.')}
 # echo "Destination Folder: $zipDest"
 
-$userRepo =  "$destination/$user-$repoName" # 
+$userRepo =  "$user-$repoName" # 
 # remove any trailing periods from the path
 while ($userRepo.EndsWith('.')) {$userRepo = $userRepo.TrimEnd('.')}
-echo "Destination Folder: $zipDest"
+echo "Destination Folder: `"$destination`""
 
-
-# #Create the destination folder if it doesn't exist ### may not need this section if the new rename below works
-# if (Get-Item -Path $zipDest -ErrorAction Ignore) {
-	# echo "" "Destination Folder Already Exists: $zipDest"
-# }
-# else {
-	# echo "" "Destination Folder Does Not Exist."
-	# echo "Creating Folder: $zipDest"
-	# New-Item $zipDest -ItemType Directory
-# }
-
-#Extract Zip File
-echo "" "Unziping File:  $zipFile"
-echo    "To Folder:      $zipDest"
+#Rename top level zip internal folder and then extract the zip file
 Try {
-	#Expand-Archive -Path $zipFile -Force -DestinationPath $destination
-	#Expand-Archive -Path $zipFile -Force 
-	# using 7zip because it's faster and doesn't choke on archive subfolders with trailing spaces
+	# Using 7zip instead of Expand-Archive. It's faster and doesn't choke
+	# on archive subfolders that have trailing spaces.
 
+	# Get the top level folder name in the zip file (this is the repo name 
+	# with the branch appended)
+	# 1) list the contents of the zip file w/o headers and save to a unique 
+	# (for our purposes) file
+	$archiveList = "DRU_Archive_List_" + (date_time) + ".tmp"
+	echo "" "Zip file contents listed in this temp file: `"$archiveList`""
+	& ${env:ProgramFiles}\7-Zip\7z.exe l -ba  $zipFile > $archiveList
+	
+	# 2) Get the first line in the file and parse the name of the top level 
+	# folder. Like: JavaScript-Projects-main Since we don't know the branch 
+	# name for sure (could be 'master', could be 'main'), we parse it. 
+	# 7-zip rename folder cmd doesn't work with wildcards, otherwise we'd 
+	# use something like JavaScript-Projects*
+	$firstLine = Get-Content -Path $archiveList  -totalCount 1
+	echo "First line in temp file: `"$firstLine`""
+	
+	# split line by space(s) to get the top folder name
+	$topFolder = ($firstLine -split "\s+")[5] 
+	echo "Zip file top folder name: `"$topFolder`""
+	
 	# Rename the top level folder in the zip file.
-	#& ${env:ProgramFiles}\7-Zip\7z.exe rn  alejlo2594-JavaScript-Projects.zip JavaScript-Projects-main Andy
-	& ${env:ProgramFiles}\7-Zip\7z.exe rn  $zipFile $repoName $userRepo
-	& ${env:ProgramFiles}\7-Zip\7z.exe x $zipFile "-o$($destination)" -y # change $zipDest to $destination
-
-#	& ${env:ProgramFiles}\7-Zip\7z.exe x $zipFile "-o$($zipDest)" -y # change $zipDest to $destination
+	echo "" "Renaming top level folder in archive: $zipFile"
+	echo "From: `"$topFolder`""
+	echo "To: `"$user-$topFolder`""
+	& ${env:ProgramFiles}\7-Zip\7z.exe rn  $zipFile $topFolder $user-$topFolder
+	echo "" "Unziping archive: `"$zipFile`""
+	echo    "To folder: `"$destination`""
+	& ${env:ProgramFiles}\7-Zip\7z.exe x $zipFile "-o$($destination)" -y 
 }
 Catch {
 	echo "A problem occurred unzipping the file."
@@ -151,34 +151,19 @@ Catch {
 }
 echo "Unzip completed." ""
 
-	
-
-#Rename-Item "D:\temp\Test Test1"
-# Move zip file to the destination - Note: Expand-Archive has a bug:  when using -DestinationPath option, 
-# it uses the name of the first folder in the zip file instead of the name of the zip file root.  
-# Example:  if I have username-repo.zip and the first folder in the zip
-# is repo, then the folder name is repo instead of username-repo.zip
-#
-# echo "Moving unzipped folder: $user-$repoName"
-# echo "To: $destination"
-#Move-Item $user-$repoName $destination
-# echo "Move completed." ""
-
 # Delete the zip file
-echo "Deleting:  $zipFile"
-#Remove-Item -Path $zipFile -Force 
+echo "Deleting zip file: $zipFile. . ."
+Remove-Item -Path $zipFile -Force 
 echo "Zip file deleted." ""
 
+# Delete the tmp archive list file
+echo "Deleting zip file content list: $destination/$archiveList. . ."
+Remove-Item -Path $archiveList -Force 
+echo "Zip file content list deleted." ""
+
 # Open the unzipped top level repository folder in file explorer.  
-# The top folder will be like, JavaScript-Projects-branch where branch is 'main', 'master' or other git branch
-# The * in $repoName* is a wilcard that will match any branch.  Since a repository will only
-# unzip into a single top level folder, we will normally only get one File Explorer window opened.  
-# If for some reason there are are two repositories unzipped into the destination (perhaps you downloaded
-# the master branch previously and now the main branch), then File explorer will open both in separate windows.  
-echo "Opening Top Level Archive Folder"
-#ii $destination\$user-$repoName\$repoName*
-ii $destination\$user-$repoName\*    # current
+# The top folder will be like: JavaScript-Projects-branch-main
+echo "Opening unzipped top level repository. . ."
+ii $destination\$user-$topFolder
 
-
-#[String]$destination = Split-Path -Parent $PSCommandPath
-#DownloadGithubRepository -Name 'Microsoft-Integration-and-Azure-Stencils-Pack-for-Visio' -Author 'sandroasp' -Location $destination
+echo "" "DRU done! :)"
