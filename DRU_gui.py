@@ -89,7 +89,8 @@ def load_gui(self):
     # as that of the app. 
     img_logo=Image.open('./images/DRU-Logo.png')
     # this one has transparency needed for the favicon
-    img_icon=Image.open('./images/DRU-Favicon.png')
+    img_icon=Image.open('./images/DRU-Favicon-Thick.ico') # Thicker circle
+    #img_icon=Image.open('./images/DRU-Favicon.png')
 
     # Resize the image in the given (width, height)
     logo=img_logo.resize((100,100))
