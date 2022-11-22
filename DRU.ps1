@@ -87,7 +87,7 @@ Catch {
 	echo "StatusCode: $($_.Exception.Response.StatusCode.value__)"
 	echo "StatusDescription: $($_.Exception.Response.StatusDescription)"
 	Write-Host $Error[0].Exception.GetType().FullName 
-	Write-Host $_.Exception.Message " Repo names ending with '.' won't download."
+	Write-Host $_.Exception.Message
 	Write-Host "Ensure Repo is public and URL contains valid Username, " `
 			   "Repository, and Branch."
 	echo $_.Exception.Message
