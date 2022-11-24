@@ -164,15 +164,15 @@ To install the Python libraries:
 ### Quick Start
 
 1. Navigate to the main folder of the repository, "Download-Repository-Utility".
-2. Open DRU.py with [IDLE](https://docs.python.org/3/library/idle.html).
-3. Click Run ➡️ Run Module to open DRU.
+2. Open **DRU.py** with **[IDLE](https://docs.python.org/3/library/idle.html).**
+3. Click **Run** ➡️ **Run Module** to open DRU.
 4. Copy and paste a GitHub repository URL into the "Enter Repo URL" field and press **enter** on your keyboard to begin the repo download and extraction.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
                                        
 #### Generate a Shortcut for the Taskbar
 
-1. Right click on DRU.py ➡️ Create Shortcut
-2. Right click on DRU.py - Shortcut ➡️ Properties
+1. Right click on **DRU.py** ➡️ **Create Shortcut**
+2. Right click on **DRU.py** - **Shortcut** ➡️ **Properties**...
 
   <img src="https://user-images.githubusercontent.com/27447653/203684901-1c100490-cd4f-4d71-bd6f-72a592bb888e.png" width="350">
 
@@ -185,11 +185,11 @@ To install the Python libraries:
     * Add a space and paste the path to the DRU.py file location
     * The finished **Target** field should look like so:  
        **C:\Users\Andy\AppData\Local\Programs\Python\Python39\pythonw.exe C:\Users\Andy\Source\Repos\Download-Repository-Utility\DRU.py**
-2. In the **Start In** field
+2. In the **Start In** field:
     *  Enter the path to DRU.py Ex: **C:\Users\Andy\Source\Repos\Download-Repository-Utility**
-3. Click Apply
-4. Click **Change Icon** ➡️ Browse
-    * Browse to the Images subfolder of the repository and select DRU-Favicon-Thick.ico ➡️ Open ➡️ OK ➡️ OK
+3. Click **Apply**
+4. Click **Change Icon** ➡️ **Browse**
+    * Browse to the Images subfolder of the repository and select **DRU-Favicon-Thick.ico** ➡️ **Open** ➡️ **OK** ➡️ **OK**
 5. Drag the shortcut to the taskbar
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
