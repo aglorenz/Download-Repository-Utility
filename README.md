@@ -171,8 +171,11 @@ To install the Python libraries:
                                        
 #### Generate a Shortcut for the Taskbar
 
-1. Right click on DRU.py ➡️ Properties
+1. Right click on DRU.py ➡️ Create Shortcut
+2. Right click on DRU.py - Shortcut ➡️ Properties
+
    ![Shortcut](https://user-images.githubusercontent.com/27447653/203681236-66b88da0-0c8a-4e15-ade4-f7da2c83d9ea.png                                    
+
 2. In the **Target** field:
     * Enter the path to your python.exe file. **Note:** The path on your machine may differ significantly.  
        Ex: **C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe**  
