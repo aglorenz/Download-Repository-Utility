@@ -172,16 +172,17 @@ To install the Python libraries:
 #### Generate a Shortcut for the Taskbar
 
 1. Right click on DRU.py ➡️ Properties
-2. In the Target Field:
-    1. Enter the path to your python.exe file. The path on your machine may differ significantly.
-       Example: **C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe**
-       If the path you enter has a space in one of the folder names, surround the whole path with double quotes (not single)
-       Example: **"C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe"**
+2. In the **Target** field:
+    1. Enter the path to your python.exe file. The path on your machine may differ significantly.  
+       Ex: **C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe**  
+       If your path has a space in one of the folder names, surround the whole path with double (not single) quotes.  
+       Ex: **"C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe"**  
     2. Change python.exe to **pythonw**.exe
-    3. Add a space and paste the path where DRU.py is located.
-    4. Example: **C:\Users\Andy\AppData\Local\Programs\Python\Python39\pythonw.exe C:\Users\Andy\Source\Repos\Download-Repository-Utility\DRU.py**
-2. In the Start In field, enter the path to DRU.py
-    1. Example: **C:\Users\Andy\Source\Repos\Download-Repository-Utility**
+    3. Add a space and paste the path to the location of DRU.py
+    4. The finished **Target** field should look like  
+       Ex: **C:\Users\Andy\AppData\Local\Programs\Python\Python39\pythonw.exe C:\Users\Andy\Source\Repos\Download-Repository-Utility\DRU.py**
+2. In the **Start In** field
+    1.  Enter the path to DRU.py Ex: **C:\Users\Andy\Source\Repos\Download-Repository-Utility**
 3. Click Apply
 4. Click Change Icon... ➡️ Browse
     1. Browse to the Images subfolder of the repository and select DRU-Favicon-Thick.ico ➡️ Open ➡️ OK ➡️ OK
