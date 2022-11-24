@@ -177,20 +177,20 @@ To install the Python libraries:
   <img src="https://user-images.githubusercontent.com/27447653/203684901-1c100490-cd4f-4d71-bd6f-72a592bb888e.png" width="350">
 
 2. In the **Target** field:
-    * Enter the path to your python.exe file. **Note:** The path on your machine may differ significantly  
+    * Enter the path to your python.exe file. **Note:** The path on your machine may differ significantly.  
        Ex: **C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe**  
-       If your path has a space in one of the folder names, surround the whole path with double (not single) quotes like so:  
+       If your path has a space in one of the folder names, surround the whole path with double quotes like so:  
        **"C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe"**  
-    * Change python.exe to **pythonw**.exe -- This will supress the python command window when running DRU
-    * Add a space and paste the path to the DRU.py file location
+    * Change python.exe to **pythonw**.exe -- This will supress the python command window when running DRU.
+    * Add a space and paste the path to the DRU.py file location.
     * The finished **Target** field should look like so:  
        **C:\Users\Andy\AppData\Local\Programs\Python\Python39\pythonw.exe C:\Users\Andy\Source\Repos\Download-Repository-Utility\DRU.py**
 2. In the **Start In** field:
-    *  Enter the path to DRU.py Ex: **C:\Users\Andy\Source\Repos\Download-Repository-Utility**
+    *  Enter the path to DRU.py   Ex: **C:\Users\Andy\Source\Repos\Download-Repository-Utility**
 3. Click **Apply**
 4. Click **Change Icon** ➡️ **Browse**
     * Browse to the Images subfolder of the repository and select **DRU-Favicon-Thick.ico** ➡️ **Open** ➡️ **OK** ➡️ **OK**
-5. Drag the shortcut to the taskbar
+5. Drag the shortcut to the taskbar.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
