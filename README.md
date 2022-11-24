@@ -177,7 +177,7 @@ To install the Python libraries:
        Ex: **C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe**  
        If your path has a space in one of the folder names, surround the whole path with double (not single) quotes like so:  
        **"C:\Users\Andy\AppData\Local\Programs\Python\Python39\python.exe"**  
-    * Change python.exe to **pythonw**.exe
+    * Change python.exe to **pythonw**.exe -- This will supress the python command window when running DRU.
     * Add a space and paste the path to the DRU.py file location.
     * The finished **Target** field should look like so:  
        **C:\Users\Andy\AppData\Local\Programs\Python\Python39\pythonw.exe C:\Users\Andy\Source\Repos\Download-Repository-Utility\DRU.py**
