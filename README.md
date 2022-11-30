@@ -137,6 +137,8 @@ DRU was developed and tested with the following:
 * Python libraries
     * Pyglet 1.5.27
     * Pillow 9.3.0
+* [7-Zip](https://www.7-zip.org/download.html) 
+    * DRU expects 7-zip to be installed in the ProgramFiles folder (when installing, accept the default locations)
 
 To install Python:
 * [Python download](https://www.python.org/downloads) (latest version is OK)
