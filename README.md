@@ -249,7 +249,7 @@ Paste a repository URL into this field.  The URL must contain the **https://** p
                                        
 * DRU cannot: 
   * Download a repository that ends with a period.  These must be downloaded manually from GitHub. It's a limitation of Web Connect.
-  * Display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples online that can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than usablility.  
+  * Display a download progress bar. It only displays 100% once the download is complete to give the feeling of progress. There are code examples online that can download a repository and show a progress bar, but they take 4X longer.  Web Connect used here is much faster.  In this case download speed was more important than download status.  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
