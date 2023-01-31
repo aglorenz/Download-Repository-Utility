@@ -195,6 +195,8 @@ def load_gui(self):
     branch_tip = Hovertip(self.entry_branch,'Enter repo branch name',
                           hover_delay=500) # Tooltip
     self.entry_branch.grid(row=0, column=2)
+            # download when enter key is pressed while cursor in Branch widget
+    self.entry_branch.bind('<Return>', lambda event: eval(self.download))
 
     ###############
     # Entry Boxes #
